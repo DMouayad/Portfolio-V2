@@ -1,0 +1,64 @@
+---
+import Footer from "@components/Footer.astro";
+import { SITE_DATA } from "@data/siteData";
+import { Icon } from "astro-icon/components";
+---
+
+<section class="section" id="contact">
+    <div class="section-header">Get in Touch</div>
+    <p>I'll be happy to hear your suggestions.</p>
+    <p>So, feel free to contribute!</p>
+    <a href={"mailto:" + SITE_DATA.home.contact.email}>
+        {SITE_DATA.home.contact.email}
+    </a>
+    <div class="icons-set">
+        {
+            SITE_DATA.home.contact.accounts.map((item) => {
+                return (
+                    <a
+                        class=""
+                        target="_blank"
+                        href={item.url}
+                        aria-label={item.buttonLabel}
+                    >
+                        <Icon name={item.icon} class="contact-icon" />
+                    </a>
+                );
+            })
+        }
+    </div>
+    <div class="footer-wrapper">
+        <Footer showSocials={false} />
+    </div>
+</section>
+
+<style>
+    section {
+        height: 100%;
+        position: relative;
+    }
+    .icons-set {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+    }
+    p {
+        color: var(--secondary-text-color);
+    }
+    .contact-icon {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.5rem;
+        color: var(--gray-0);
+    }
+    a {
+        margin-block: 0.5625em 2em;
+        color: var(--gray-0);
+    }
+    .footer-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+</style>

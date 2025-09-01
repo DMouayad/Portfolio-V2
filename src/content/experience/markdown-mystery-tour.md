@@ -1,11 +1,16 @@
 ---
 title: Markdown Mystery Tour
 publishDate: 2020-03-02 00:00:00
-img: /assets/stock-1.jpg
+img: /images/600x400.webp
 img_alt: Iridescent ripples of a bright blue and pink liquid
 description: |
   We designed a whodunnit-style game to introduce Markdown formatting. Suspense — suspicion — syntax!
-tags:
+links:
+  - label: View on GitHub
+    url: /
+  - label: View on Figma
+    url: /
+techStack:
   - Design
   - Dev
   - User Testing

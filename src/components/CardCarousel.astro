@@ -1,0 +1,145 @@
+---
+import CustomCarousel from "./CustomCarousel.astro";
+import ExperienceCard from "./home/ExperienceCard.astro";
+import ProjectCard from "./home/ProjectCard.astro";
+
+interface Props {
+    carouselId: string;
+    cardType: "experience" | "project";
+    desktopItemPerSlide: number;
+    mobileItemPerSlide?: number;
+    withArrows?: boolean;
+    items: any[];
+    mobileCardHeight?: number;
+}
+const {
+    carouselId,
+    desktopItemPerSlide,
+    withArrows = true,
+    items,
+    cardType,
+    mobileItemPerSlide = 1,
+    mobileCardHeight = 300,
+} = Astro.props;
+
+const totalItemsCount = items.length;
+
+const desktopSlidesCount = Math.ceil(totalItemsCount / desktopItemPerSlide);
+const mobileSlidesCount = Math.ceil(totalItemsCount / mobileItemPerSlide);
+
+const desktopSlidesIds = Array.from(
+    { length: desktopSlidesCount },
+    (_, i) => i,
+);
+
+const mobileSlidesIds = Array.from({ length: mobileSlidesCount }, (_, i) => i);
+---
+
+<div class="desktop-carousel">
+    <CustomCarousel
+        carouselId={`${carouselId}-desktop`}
+        slidesCount={desktopSlidesCount}
+        withArrows={withArrows}
+    >
+        {
+            desktopSlidesIds.map((i) => (
+                <div id={carouselId + "_" + i} class="carousel__item">
+                    <div class="cards-grid">
+                        {items
+                            .slice(
+                                i * desktopItemPerSlide,
+                                i * desktopItemPerSlide + desktopItemPerSlide,
+                            )
+                            .map((item) => {
+                                if (cardType === "experience") {
+                                    return <ExperienceCard item={item} />;
+                                } else if (cardType === "project") {
+                                    return <ProjectCard item={item} />;
+                                }
+                            })}
+                    </div>
+                </div>
+            ))
+        }
+    </CustomCarousel>
+</div>
+<div class="mobile-carousel">
+    <CustomCarousel
+        carouselId={`${carouselId}-mobile`}
+        withArrows={withArrows}
+        slidesCount={mobileSlidesCount}
+    >
+        {
+            mobileSlidesIds.map((index) => (
+                <div id={carouselId + "_" + index} class="carousel__item">
+                    {/* <div
+                        class="mobile-card-wrapper"
+                        style={`height: ${mobileCardHeight}px`}
+                    >
+                        {cardType === "experience" && (
+                            <ExperienceCard item={items[id]} />
+                        )}
+                        {cardType === "project" && (
+                            <ProjectCard item={items[id]} />
+                        )}
+                    </div> */}
+                    <div class="cards-grid">
+                        {items
+                            .slice(
+                                index * mobileItemPerSlide,
+                                index * mobileItemPerSlide + mobileItemPerSlide,
+                            )
+                            .map((item) => {
+                                if (cardType === "experience") {
+                                    return <ExperienceCard item={item} />;
+                                } else if (cardType === "project") {
+                                    return <ProjectCard item={item} />;
+                                }
+                            })}
+                    </div>
+                </div>
+            ))
+        }
+    </CustomCarousel>
+</div>
+<style>
+    .cards-grid {
+        margin-top: 38px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        overflow: hidden;
+        justify-items: center;
+    }
+    .desktop-carousel {
+        display: block;
+    }
+
+    .mobile-carousel {
+        display: none;
+    }
+    .mobile-card-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (min-width: 50em) {
+        .cards-grid {
+            max-height: 766px;
+        }
+        :root {
+            --carousel-arrows-left: -55px;
+            --carousel-arrows-right: -55px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .desktop-carousel {
+            display: none;
+        }
+        .mobile-carousel {
+            display: block;
+        }
+    }
+</style>

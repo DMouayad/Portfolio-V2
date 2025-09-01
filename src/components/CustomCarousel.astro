@@ -1,0 +1,199 @@
+---
+import { Icon } from "astro-icon/components";
+
+/**
+ * A generic, low-level carousel component that provides the core functionality for a scrollable, draggable carousel.
+ * It supports touch/mouse dragging, arrow buttons, and dot navigation.
+ *
+ * It can be used as a building block for more specific carousels.
+ *
+ * The script for this component is located at `src/scripts/custom_carousel.ts`.
+ */
+interface Props {
+    /** A unique identifier for the carousel. Should not contain underscores. */
+    carouselId: string;
+    /** Optional CSS classes to apply to the carousel container. */
+    classList?: string;
+    /** The total number of slides in the carousel. */
+    slidesCount: number;
+    /** Whether to display the previous/next arrow buttons. Defaults to true. */
+    withArrows?: boolean;
+}
+const { carouselId, slidesCount, classList, withArrows = true } = Astro.props;
+const slidesIds = Array.from(Array(slidesCount).keys()).map((n) => n);
+function controlIsCurrent(index: number) {
+    return index == 1 ? { checked: "yes" } : {};
+}
+const isArabic = Astro.currentLocale === "ar";
+---
+
+<div
+    id={carouselId}
+    class={"custom-carousel " + (classList ?? "")}
+    current-slide={carouselId + "_" + 0}
+    slides-count={slidesCount}
+>
+    <div class="carousel-viewport">
+        <slot />
+    </div>
+    <div id="carousel-dots" class="carousel-dots">
+        {
+            slidesIds.map((id) => (
+                <input
+                    {...controlIsCurrent(id)}
+                    type="radio"
+                    aria-label={carouselId + "_" + id}
+                    name={carouselId}
+                    value={carouselId + "_" + id}
+                    class="controls__dot"
+                />
+            ))
+        }
+    </div>
+    {
+        withArrows && (
+            <div class="carousel-arrows" style="direction: ltr !important;">
+                <button
+                    class={
+                        "arrow-btn " +
+                        (isArabic ? "next-slide-btn" : "prev-slide-btn")
+                    }
+                >
+                    <Icon name="carbon:chevron-left" />
+                </button>
+                <button
+                    class={
+                        "arrow-btn " +
+                        (isArabic ? "prev-slide-btn" : "next-slide-btn")
+                    }
+                >
+                    <Icon
+                        name="carbon:chevron-right"
+                        autoReverse="true"
+                        size="24"
+                    />
+                </button>
+            </div>
+        )
+    }
+</div>
+<style>
+    .custom-carousel {
+        position: relative;
+        touch-action: pan-x;
+    }
+
+    .carousel-viewport {
+        display: flex;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        /* Hide scrollbar in IE. */
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+    }
+    :global(.carousel__item) {
+        scroll-snap-align: start;
+    }
+
+    .carousel-viewport::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar in WebKit and Blink. */
+    }
+
+    /* Direct descendant of slot should be the carousel items */
+    :global(.custom-carousel .carousel-viewport > *) {
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .carousel-dots {
+        position: absolute;
+        right: 0;
+        bottom: var(--carousel-dots-bottom);
+        left: 0;
+        display: flex;
+        justify-content: center;
+        gap: var(--carousel-dots-spacing);
+    }
+
+    .controls__dot {
+        width: var(--carousel-dot-size);
+        height: var(--carousel-dot-size);
+        margin: 0;
+        display: inline-block;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.25s;
+        background-color: var(--carousel-dot-color);
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .controls__dot:hover {
+        background-color: var(--carousel-dot-active-color);
+        opacity: 0.5;
+    }
+
+    .controls__dot:checked {
+        background-color: var(--carousel-dot-active-color);
+        opacity: 1;
+    }
+
+    .carousel-arrows {
+        position: absolute;
+        top: var(--carousel-arrows-top);
+        left: var(--carousel-arrows-left);
+        right: var(--carousel-arrows-right);
+        bottom: var(--carousel-arrows-bottom);
+        transform: translateY(-50%);
+        justify-content: space-between;
+        display: var(--carousel-arrows-display);
+    }
+
+    .arrow-btn {
+        background-color: var(--carousel-arrow-bg-color);
+        color: var(--carousel-arrow-color);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        align-items: center;
+        transition: all 0.2s;
+        user-select: none;
+        outline: none;
+
+        svg {
+            transition: all 0.2s ease-in;
+            width: var(--carousel-arrow-dimension);
+            height: var(--carousel-arrow-dimension);
+        }
+    }
+
+    .arrow-btn:hover {
+        svg {
+            width: calc(var(--carousel-arrow-dimension) + 5px);
+            height: calc(var(--carousel-arrow-dimension) + 5px);
+        }
+    }
+
+    .arrow-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+        .carousel-arrows {
+            left: 0.25rem;
+            right: 0.25rem;
+        }
+    }
+    @media (max-width: 768px) {
+        .carousel-arrows {
+            display: none;
+        }
+    }
+</style>
+<script src="../scripts/custom_carousel.ts"></script>

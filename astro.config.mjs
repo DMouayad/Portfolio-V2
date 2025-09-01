@@ -1,5 +1,24 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import icon from 'astro-icon';
+
+import mdx from '@astrojs/mdx';
+
+
+import sitemap from '@astrojs/sitemap';
+
+
 // https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: import.meta.env.SITE_URL,
+  integrations: [icon(), mdx(), sitemap()],
+  vite: {
+    build: {
+      assetsInlineLimit: 4096,
+    }
+  },
+  image: {
+    responsiveStyles: true, layout: 'constrained',
+  }
+});

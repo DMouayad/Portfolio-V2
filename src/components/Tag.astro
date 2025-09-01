@@ -1,0 +1,33 @@
+---
+import { getTagColor } from "@data/tagColors";
+
+interface Props {
+    tag: string;
+    labelStyle?: string;
+    dotSize?: number;
+}
+
+const { tag, labelStyle, dotSize = 10 } = Astro.props;
+---
+
+<div class="tag" style={labelStyle ?? ""}>
+    <span
+        class="tag-dot"
+        style={`background-color: ${getTagColor(tag)}; width: ${dotSize}px; height: ${dotSize}px;`}
+    ></span>
+    <span>{tag}</span>
+</div>
+
+<style>
+    .tag {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: var(--text-xs);
+        color: var(--gray-100);
+    }
+
+    .tag-dot {
+        border-radius: 50%;
+    }
+</style>

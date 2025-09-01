@@ -1,0 +1,74 @@
+---
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+import { getTagColor } from "@data/tagColors";
+import Tag from "@components/Tag.astro";
+
+interface Props {
+    item: CollectionEntry<"project">;
+}
+const { item } = Astro.props;
+const { title, description, tags, url } = item.data;
+---
+
+<div class="project-card">
+    <a class="title" href={url} target="_blank" rel="noopener noreferrer">
+        <span><Icon name="carbon:logo-github" /></span>
+        {title}
+    </a>
+    <p class="description">{description}</p>
+    <div class="footer">
+        <div class="tags">
+            {tags.map((tag) => <Tag tag={tag} />)}
+        </div>
+    </div>
+</div>
+<style>
+    .project-card {
+        position: relative;
+        width: 350px;
+        height: 175px;
+        max-height: 190px;
+        border: 1.6px solid var(--card-border);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 21px;
+        transition: border-color 0.2s ease-in-out;
+    }
+    .project-card:hover {
+        border-color: var(--gray-200);
+    }
+
+    .title {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: var(--text-sm);
+        text-decoration: none;
+        color: var(--card-title);
+    }
+
+    .description {
+        font-size: var(--text-sm);
+        color: var(--card-content-color);
+        flex-grow: 1;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+
+    .footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+</style>

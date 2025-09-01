@@ -1,0 +1,34 @@
+---
+// No props needed for this simple version
+---
+<div class="two-col-wrapper">
+    <div class="left">
+        <slot name="left" />
+    </div>
+    <div class="right">
+        <slot name="right" />
+    </div>
+</div>
+
+<style>
+    .two-col-wrapper {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-block: 1.5rem;
+    }
+    .left, .right {
+        flex: 1;
+        min-width: 300px;
+    }
+    .right {
+        text-align: center;
+    }
+    /* Ensure images in the right slot don't overflow */
+    .right :global(img) {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 0.5rem;
+    }
+</style>

@@ -1,0 +1,44 @@
+---
+interface Props {
+    headers: string[];
+    rows: string[][];
+}
+const { headers, rows } = Astro.props;
+---
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                {headers.map(header => <th>{header}</th>)}
+            </tr>
+        </thead>
+        <tbody>
+            {rows.map(row => (
+                <tr>
+                    {row.map(cell => <td>{cell}</td>)}
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table-wrapper {
+        overflow-x: auto;
+        margin-block: 1.5rem;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 500px; /* Ensure table has a minimum width */
+    }
+    th, td {
+        border: 1px solid var(--gray-800);
+        padding: 0.75rem;
+        text-align: left;
+    }
+    th {
+        background-color: var(--gray-900); /* A slightly different bg for headers */
+    }
+</style>

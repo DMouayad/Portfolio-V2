@@ -1,0 +1,306 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Nav from "../../components/Nav.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+import { simpleReadingTime } from "../../utils/readingTime";
+import Footer from "@components/Footer.astro";
+import Tag from "@components/Tag.astro";
+
+interface Props {
+	entry: CollectionEntry<"experience">;
+}
+
+// This is a dynamic route that generates a page for every Markdown file in src/content/
+// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
+// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
+export async function getStaticPaths() {
+	const experience = await getCollection("experience");
+	return experience.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, publishDate, techStack, links } = entry.data;
+const timeToRead = simpleReadingTime(entry.body);
+
+const homeURL = Astro.url.origin;
+---
+
+<BaseLayout title={title} description={description}>
+	<Nav showNavMenu={false} />
+	<div class="page-wrapper">
+		<div class="sidebar">
+			<a class="back-button" href={homeURL.toString() + "#experiences"}
+				><Icon size={24} name="carbon:chevron-left" /> back to experiences</a
+			>
+			{
+				techStack && (
+					<div class="tech-stack sidebar-tech-stack">
+						<div class="subtitle">TechStack</div>
+						{techStack.map((tag) => (
+							<Tag
+								tag={tag}
+								dotSize={7}
+								labelStyle="font-size: var(--text-sm);"
+							/>
+						))}
+					</div>
+				)
+			}
+			{
+				links && (
+					<div class="links sidebar-links">
+						<div class="subtitle">Links</div>
+
+						{links.map((link) => (
+							<div class="link">
+								<a href={link.url} target="_blank">
+									{link.label}
+								</a>
+							</div>
+						))}
+					</div>
+				)
+			}
+		</div>
+		<div class="main">
+			<div class="main-title">{title}</div>
+			<div class="main-header">
+				<div>
+					{
+						publishDate.toLocaleDateString("en-US", {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})
+					}
+				</div>
+				<p class="reading-time">
+					{`${timeToRead} min read `}
+				</p>
+			</div>
+			<div class="content">
+				<Content />
+			</div>
+		</div>
+	</div>
+	<div class="footer-wrapper">
+		<Footer showSocials={true} />
+	</div>
+</BaseLayout>
+
+<style>
+	.footer-wrapper {
+		position: absolute;
+		left: 2.5rem;
+		right: 2.5rem;
+	}
+	.page-wrapper {
+		position: relative;
+		height: fit-content;
+		min-height: 100%;
+		margin-top: 100px;
+	}
+	@media (min-width: 50em) {
+		.page-wrapper {
+			padding-inline: 2rem;
+		}
+	}
+	/* MAIN */
+	.main {
+		max-width: 950px;
+		padding: 2.5rem;
+		margin-inline: auto;
+		position: relative;
+	}
+
+	.main-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		font-size: var(--text-sm);
+		font-weight: 400;
+		font-family: var(--font-brand);
+		color: var(--secondary-text-color);
+		margin-bottom: 30px;
+	}
+
+	.main-title {
+		font-size: var(--text-xl);
+		font-family: var(--font-brand);
+		font-weight: 700;
+	}
+	@media (min-width: 50em) {
+		.main {
+			max-width: 900px;
+			margin-inline: auto;
+			padding-top: 50px;
+		}
+		.main-header {
+			/* margin-bottom: 10px; */
+		}
+		.main-title {
+			font-size: var(--text-3xl);
+			margin-bottom: 1rem;
+		}
+	}
+
+	/* Sidebar */
+	.sidebar {
+		padding-inline: 2rem;
+		padding-block: 1rem;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		background-color: var(--bg-color);
+		transition: background-color var(--theme-transition);
+		row-gap: 57px;
+	}
+	.sidebar .back-button {
+		grid-column-start: 1;
+		grid-column-end: 3;
+		position: relative;
+		color: var(--gray-100);
+		text-decoration: none;
+		font-size: var(--text-sm);
+		display: flex;
+		align-items: start;
+		background-color: none;
+		border-radius: 5px;
+		padding: 5px 5px 5px 2px;
+		font-weight: 500;
+	}
+
+	.sidebar a.back-button::after {
+		background-color: currentColor;
+		position: absolute;
+		left: 24px;
+		bottom: 0;
+		content: "";
+		display: block;
+		height: 0.1em;
+		transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		width: 0;
+	}
+	.sidebar a.back-button:hover::after {
+		width: calc(100% - 24px);
+	}
+
+	.subtitle {
+		font-size: var(--text-base);
+		color: var(--gray-100);
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+	.tech-stack {
+		padding-inline-start: 10px;
+		> div.tag {
+			margin-bottom: 10px;
+		}
+	}
+	.links {
+		padding-inline-start: 10px;
+
+		a {
+			text-decoration: 2px underline var(--accent-regular);
+			font-weight: 600;
+			color: currentColor;
+			font-size: var(--text-sm);
+		}
+		> .link {
+			margin-bottom: 10px;
+		}
+	}
+	@media (min-width: 50em) {
+		.sidebar {
+			top: 100px;
+			position: fixed;
+			display: flex;
+			width: 300px;
+			padding: 0;
+			gap: 1rem;
+			justify-content: start;
+			flex-direction: column;
+			align-items: baseline;
+			background-color: transparent;
+			border: none;
+		}
+
+		.sidebar .back-button {
+			font-size: var(--text-base);
+		}
+		.tech-stack {
+			padding-top: 45%;
+		}
+	}
+
+	/* CONTENT */
+
+	.content {
+		padding-bottom: 10%;
+	}
+
+	.content > :global(* + *) {
+		margin-top: 1rem;
+	}
+
+	.content :global(h1),
+	.content :global(h2),
+	.content :global(h3),
+	.content :global(h4),
+	.content :global(h5) {
+		margin: 1.5rem 0;
+	}
+
+	.content :global(img) {
+		border-radius: 5px;
+		box-shadow: var(--shadow-sm);
+	}
+
+	.content :global(blockquote) {
+		font-size: var(--text-lg);
+		font-family: var(--font-brand);
+		font-weight: 600;
+		line-height: 1.1;
+		padding-inline-start: 1.5rem;
+		border-inline-start: 0.25rem solid var(--accent-dark);
+		color: var(--gray-0);
+	}
+
+	.back-link,
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.back-link:hover,
+	.back-link:focus,
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.back-link {
+			display: block;
+			align-self: flex-start;
+		}
+
+		.details {
+			flex-direction: row;
+			gap: 2.5rem;
+		}
+
+		.content :global(blockquote) {
+			font-size: var(--text-2xl);
+		}
+	}
+</style>

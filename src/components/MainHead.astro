@@ -1,5 +1,6 @@
 ---
-import '../styles/global.css';
+import { SITE_DATA } from "@data/siteData";
+import "../styles/global.css";
 
 interface Props {
 	title?: string | undefined;
@@ -7,8 +8,8 @@ interface Props {
 }
 
 const {
-	title = 'Jeanine White: Personal Site',
-	description = 'The personal site of Jeanine White',
+	title = "Your Name: Personal Site",
+	description = 'The personal site of "Your Name"',
 } = Astro.props;
 ---
 
@@ -16,32 +17,63 @@ const {
 <meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
+<title>{SITE_DATA.seo.siteTitle + " | " + title}</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
-	rel="stylesheet"
-/>
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<style is:inline>
+	@font-face {
+		font-family: "Roboto Slab";
+		src:
+			url("/fonts/RobotoSlab-VariableFont.woff2") format("woff2"),
+			url("/fonts/RobotoSlab-VariableFont.ttf") format("truetype");
+		font-display: swap;
+		font-weight: 100 900;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: "Geist";
+		src: url("/fonts/Geist[wght].woff2") format("woff2");
+		font-display: swap;
+		font-weight: 100 900;
+		font-style: normal;
+	}
+
+	body {
+		font-family: "Geist", sans-serif;
+	}
+	h1 {
+		font-family: "Roboto Slab", sans-serif;
+	}
+</style>
+
 <script is:inline>
 	// This code is inlined in the head to make dark mode instant & blocking.
 	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
+		if (
+			typeof localStorage !== "undefined" &&
+			localStorage.getItem("theme")
+		) {
+			return localStorage.getItem("theme");
 		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		return window.matchMedia("(prefers-color-scheme: dark)").matches
+			? "dark"
+			: "light";
 	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+	const isDark = getThemePreference() === "dark";
+	document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
 
-	if (typeof localStorage !== 'undefined') {
+	if (typeof localStorage !== "undefined") {
 		// Watch the document element and persist user preference when it changes.
 		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('theme-dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+			const isDark =
+				document.documentElement.classList.contains("theme-dark");
+			localStorage.setItem("theme", isDark ? "dark" : "light");
 		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ["class"],
+		});
 	}
 </script>

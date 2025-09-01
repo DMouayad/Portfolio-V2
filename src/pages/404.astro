@@ -1,8 +1,31 @@
 ---
-import Hero from '../components/Hero.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from "@components/Nav.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
+	<Nav showNavMenu={false} />
+	<div>
+		<h1>404</h1>
+		<p>This page could not be found.</p>
+		<a href="/">Go to the home page</a>
+	</div>
 </BaseLayout>
+
+<style>
+	div {
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+	p {
+		margin-top: 1rem;
+	}
+	a {
+		color: var(--gray-100);
+		margin-top: 2rem;
+	}
+</style>

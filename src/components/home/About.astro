@@ -1,0 +1,65 @@
+---
+import Image from "astro/components/Image.astro";
+import avatarImg from "../../images/400.webp";
+import { SITE_DATA } from "@data/siteData";
+---
+
+<section class="section profile" id="about">
+    <div>
+        <header class="section-header">
+            Hello,<br />
+            My name is {SITE_DATA.home.about.name}
+        </header>
+        <p>I'm a Minimal personal website built with Astro.</p>
+        <p>I'm superior in every way.</p>
+        <p>I work with HTML & CSS only 😎 (and a lil bit of vanilla JS)</p>
+    </div>
+    <div class="img-wrapper">
+        <Image
+            src={avatarImg}
+            alt={SITE_DATA.home.about.name}
+            width={450}
+            height={450}
+            loading={"eager"}
+            decoding={"async"}
+            fetchpriority={"high"}
+        />
+        <div class="img-shade"></div>
+    </div>
+</section>
+<style>
+    .profile {
+        position: relative;
+        display: grid;
+        align-items: center;
+    }
+    .profile p {
+        margin-bottom: 8px;
+    }
+    .profile .img-shade {
+        background: var(--image-shade);
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        top: 30%;
+        left: 30%;
+        z-index: -999;
+    }
+
+    .profile .img-wrapper {
+        max-width: 300px;
+        justify-self: center;
+        position: relative;
+        width: 84%;
+    }
+
+    @media (min-width: 50em) {
+        .profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 3rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+</style>

@@ -1,24 +1,8 @@
-@font-face {
-	font-family: "Raleway";
-	src: url("/fonts/Raleway-VariableFont.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "Roboto Slab";
-	src: url("/fonts/RobotoSlab-VariableFont.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
-	font-display: swap;
-	font-optical-sizing: auto;
-}
-
 /* Global variables */
 :root {
+
 	/* Colors */
-	--gray-0: #090b11;
+	--gray-0: #000000cc;
 	--gray-50: #141925;
 	--gray-100: #283044;
 	--gray-200: #3d4663;
@@ -32,30 +16,18 @@
 	--gray-999-basis: 0, 0%, 100%;
 	--gray-999_40: hsla(var(--gray-999-basis), 0.4);
 	--gray-999: #ffffff;
+	--bg-color: #ffffff;
+	--accent-regular: #ab4e4f;
 
-	--accent-light: #c561f6;
-	--accent-regular: #7611a6;
-	--accent-dark: #1c0056;
-	--accent-overlay: hsla(280, 89%, 67%, 0.33);
-	--accent-subtle-overlay: var(--accent-overlay);
+	--active: #56c096;
 	--accent-text-over: var(--gray-999);
+	--secondary-text-color: #00000099;
+	--link-color: var(--gray-100);
+	--image-shade: #e8e6e6;
+	--card-border: #e1e4e8;
+	--card-title: #001aff;
+	--card-content-color: #000000d9;
 
-	--link-color: var(--accent-regular);
-
-	/* Gradients */
-	--gradient-stop-1: var(--accent-light);
-	--gradient-stop-2: var(--accent-regular);
-	--gradient-stop-3: var(--accent-dark);
-	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 150%);
-	--gradient-accent: linear-gradient(150deg,
-			var(--gradient-stop-1),
-			var(--gradient-stop-2),
-			var(--gradient-stop-3));
-	--gradient-accent-orange: linear-gradient(150deg,
-			#ca7879,
-			var(--accent-regular),
-			var(--accent-dark));
-	--gradient-stroke: linear-gradient(180deg, var(--gray-900), var(--gray-700));
 
 	/* Shadows */
 	--shadow-sm:
@@ -69,10 +41,11 @@
 		0px 16px 16px rgba(9, 11, 17, 0.1), 0px 4px 9px rgba(9, 11, 17, 0.12);
 
 	/* Text Sizes */
+	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;
 	--text-base: 1rem;
 	--text-md: 1.125rem;
-	--text-lg: 1.25rem;
+	--text-lg: 1.35rem;
 	--text-xl: 1.625rem;
 	--text-2xl: 2.125rem;
 	--text-3xl: 2.625rem;
@@ -83,11 +56,30 @@
 	--font-system:
 		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
 		"Open Sans", "Helvetica Neue", sans-serif;
-	--font-body: "Roboto Slab", var(--font-system);
-	--font-brand: Raleway, var(--font-system);
+	--font-body: "Geist", var(--font-system);
+	--font-brand: "Roboto Slab", var(--font-system);
 	font-optical-sizing: auto;
 	/* Transitions */
-	--theme-transition: 0.2s ease-in-out;
+	--theme-transition: 0.3s ease-in-out;
+
+	/* Custom Carousel */
+	--carousel-dot-color: var(--gray-700);
+	--carousel-dot-active-color: var(--gray-50);
+
+	--carousel-arrow-bg-color: transparent;
+	--carousel-arrow-border-color: var(--card-border);
+	--carousel-arrow-color: var(--card-content-color);
+
+	--carousel-dot-size: 10px;
+	--carousel-dots-spacing: 16px;
+	--carousel-dots-bottom: -30px;
+	--carousel-arrow-dimension: 40px;
+	--carousel-arrows-left: 0;
+	--carousel-arrows-right: 0;
+	--carousel-arrows-top: 35%;
+	--carousel-arrows-bottom: auto;
+	--carousel-arrows-display: flex;
+	--carousel-arrow-radius: 50%;
 }
 
 :root.theme-dark {
@@ -105,23 +97,24 @@
 	--gray-999-basis: 225, 31%, 5%;
 	--gray-999: #090b11;
 
-	--accent-light: #1c0056;
-	--accent-regular: #7611a6;
-	--accent-dark: #c561f6;
-	--accent-overlay: hsla(280, 89%, 67%, 0.33);
-	--accent-subtle-overlay: hsla(281, 81%, 36%, 0.33);
+	--bg-color: #181a1b;
+	--secondary-text-color: #ffffff99;
+
+	--card-border: #373c3e;
+	--card-content-color: #ffffffd9;
+	--card-title: #86b5ff;
+
+	--accent-regular: #ab4e4f;
+
+	--active: #8CC7AF;
 	--accent-text-over: var(--gray-0);
+	--image-shade: #26292a;
+	--link-color: var(--gray-100);
 
-	--link-color: var(--accent-dark);
+	/* Custom Carousel */
 
-	--gradient-stop-1: #4c11c6;
-	--gradient-subtle: linear-gradient(150deg, var(--gray-900) 19%, var(--gray-999) 81%);
-	--gradient-accent-orange: linear-gradient(150deg,
-			#ca7879,
-			var(--accent-regular),
-			var(--accent-light));
-	--gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
 
+	/* shadows */
 	--shadow-sm:
 		0px 6px 3px rgba(255, 255, 255, 0.01), 0px 4px 2px rgba(255, 255, 255, 0.01),
 		0px 2px 2px rgba(255, 255, 255, 0.02), 0px 0px 1px rgba(255, 255, 255, 0.03);
@@ -131,20 +124,84 @@
 	--shadow-lg:
 		0px 62px 25px rgba(255, 255, 255, 0.01), 0px 35px 21px rgba(255, 255, 255, 0.05),
 		0px 16px 16px rgba(255, 255, 255, 0.1), 0px 4px 9px rgba(255, 255, 255, 0.12);
+
 }
 
 html,
 body {
-	min-height: 100%;
 	overflow-x: hidden;
 }
 
 body {
-	background-color: var(--gray-999);
-	color: var(--gray-200);
-	font-family: var(--font-body);
+	width: 100vw;
+	margin: 0;
+	transition: var(--theme-transition);
+	background-color: var(--bg-color);
+	color: var(--gray-0);
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.5;
+}
+
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	scroll-snap-type: y mandatory;
+	overflow-y: scroll;
+	position: relative;
+	scroll-snap-stop: always;
+	padding-inline: 2rem;
+
+}
+
+@media (min-width: 50em) {
+	.wrapper {
+		padding-inline: 1.5rem;
+
+	}
+}
+
+.section {
+	width: 100%;
+	min-height: 70%;
+	height: max-content;
+	margin-top: 30%;
+	margin-bottom: 5%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.section-header {
+	max-width: 50ch;
+	font-size: var(--text-md);
+	color: var(--gray-0);
+	font-family: var(--font-body);
+	font-weight: 700;
+	margin-bottom: 1.1rem;
+}
+
+
+@media (min-width: 50em) {
+	.section {
+		height: 100%;
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
+		scroll-behavior: smooth;
+		margin-top: 0;
+		margin-bottom: 0;
+		scroll-padding-top: 136px;
+		max-width: 70rem;
+		margin-inline: auto;
+	}
+
+	.section-header {
+		grid-area: header;
+		font-size: 24px;
+	}
 }
 
 *,
@@ -159,9 +216,7 @@ img {
 	height: auto;
 }
 
-a {
-	color: var(--link-color);
-}
+
 
 h1,
 h2,
@@ -208,17 +263,6 @@ h5 {
 	border-width: 0;
 }
 
-.wrapper {
-	width: 100%;
-	max-width: 83rem;
-	margin-inline: auto;
-	padding-inline: 1.5rem;
-}
-
-.stack {
-	display: flex;
-	flex-direction: column;
-}
 
 .gap-2 {
 	gap: 0.5rem;
