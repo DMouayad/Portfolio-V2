@@ -12,22 +12,18 @@ import { SITE_DATA } from "@data/siteData";
                 {SITE_DATA.home.about.name}
             </span>
         </header>
+        <p>I'm a freelance Flutter developer.</p>
         <p>
-            A minimal and sleek portfolio template designed to showcase your
-            work in style. I'm built for performance, scoring 100% score on
-            Lighthouse.
+            I love open-source and I'm actively contributing to many Flutter
+            packages.
         </p>
         <p>
-            I accomplish this through responsive images and efficient loading of
-            CSS, JavaScript, and fonts.
-        </p>
-        <p>
-            Feel free to customize me to fit your needs. I'm open source and
-            available on
-            <span>
-                <a class="link" href="https://github.com/dmouayad/one">GitHub</a
+            Feel free to reach out via <span>
+                <a
+                    class="link"
+                    href={`mailto:${SITE_DATA.home.contactMe.email}`}>MAIL</a
                 >
-            </span>
+            </span> if you need any help or have a project in mind.
         </p>
     </div>
     <div class="img-wrapper">
@@ -72,7 +68,7 @@ import { SITE_DATA } from "@data/siteData";
     }
     a.link {
         color: var(--accent-regular);
-        font-weight: bold;
+        font-weight: 500;
     }
     @media (min-width: 50em) {
         .profile {
