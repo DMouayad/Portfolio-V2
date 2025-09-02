@@ -11,7 +11,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: import.meta.env.SITE_URL,
+  site: "https://one-9qg.pages.dev",
   integrations: [icon(), mdx(), sitemap()],
   vite: {
     build: {
