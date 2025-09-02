@@ -26,7 +26,7 @@ const { title, description, tags, url } = item.data;
 <style>
     .project-card {
         position: relative;
-        width: 350px;
+        max-width: 350px;
         height: 175px;
         max-height: 190px;
         border: 1.6px solid var(--card-border);
@@ -35,6 +35,11 @@ const { title, description, tags, url } = item.data;
         flex-direction: column;
         padding: 18px 21px;
         transition: border-color 0.2s ease-in-out;
+    }
+    @media (min-width: 50em) {
+        .project-card {
+            width: 350px;
+        }
     }
     .project-card:hover {
         border-color: var(--gray-200);
