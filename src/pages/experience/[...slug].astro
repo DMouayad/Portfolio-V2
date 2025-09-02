@@ -35,7 +35,7 @@ const homeURL = Astro.url.origin;
 	<div class="page-wrapper">
 		<div class="sidebar">
 			<a class="back-button" href={homeURL.toString() + "#experiences"}
-				><Icon size={24} name="carbon:chevron-left" /> back to experiences</a
+				><Icon size={20} name="carbon:chevron-left" /> back to experiences</a
 			>
 			{
 				techStack && (
@@ -45,7 +45,7 @@ const homeURL = Astro.url.origin;
 							<Tag
 								tag={tag}
 								dotSize={7}
-								labelStyle="font-size: var(--text-sm);"
+								labelStyle="color:var(--gray-200);font-size: var(--text-sm);"
 							/>
 						))}
 					</div>
@@ -59,6 +59,9 @@ const homeURL = Astro.url.origin;
 						{links.map((link) => (
 							<div class="link">
 								<a href={link.url} target="_blank">
+									<span>
+										<Icon name="carbon:link" />
+									</span>
 									{link.label}
 								</a>
 							</div>
@@ -107,7 +110,7 @@ const homeURL = Astro.url.origin;
 	}
 	@media (min-width: 50em) {
 		.page-wrapper {
-			padding-inline: 2rem;
+			padding-inline: 3rem;
 		}
 	}
 	/* MAIN */
@@ -141,9 +144,6 @@ const homeURL = Astro.url.origin;
 			margin-inline: auto;
 			padding-top: 50px;
 		}
-		.main-header {
-			/* margin-bottom: 10px; */
-		}
 		.main-title {
 			font-size: var(--text-3xl);
 			margin-bottom: 1rem;
@@ -167,7 +167,7 @@ const homeURL = Astro.url.origin;
 		grid-column-start: 1;
 		grid-column-end: 3;
 		position: relative;
-		color: var(--gray-100);
+		color: var(--secondary-text-color);
 		text-decoration: none;
 		font-size: var(--text-sm);
 		display: flex;
@@ -177,7 +177,9 @@ const homeURL = Astro.url.origin;
 		padding: 5px 5px 5px 2px;
 		font-weight: 500;
 	}
-
+	.sidebar .back-button:hover {
+		color: var(--gray-0);
+	}
 	.sidebar a.back-button::after {
 		background-color: currentColor;
 		position: absolute;
@@ -195,8 +197,8 @@ const homeURL = Astro.url.origin;
 
 	.subtitle {
 		font-size: var(--text-base);
-		color: var(--gray-100);
-		font-weight: 700;
+		color: var(--accent-regular);
+		font-weight: 500;
 		margin-bottom: 1rem;
 	}
 	.tech-stack {
@@ -209,10 +211,13 @@ const homeURL = Astro.url.origin;
 		padding-inline-start: 10px;
 
 		a {
-			text-decoration: 2px underline var(--accent-regular);
-			font-weight: 600;
-			color: currentColor;
+			text-decoration: none;
+			color: var(--gray-200);
 			font-size: var(--text-sm);
+			font-weight: 400;
+		}
+		a:hover {
+			color: var(--gray-0);
 		}
 		> .link {
 			margin-bottom: 10px;
@@ -220,7 +225,7 @@ const homeURL = Astro.url.origin;
 	}
 	@media (min-width: 50em) {
 		.sidebar {
-			top: 100px;
+			top: 90px;
 			position: fixed;
 			display: flex;
 			width: 300px;
@@ -233,9 +238,6 @@ const homeURL = Astro.url.origin;
 			border: none;
 		}
 
-		.sidebar .back-button {
-			font-size: var(--text-base);
-		}
 		.tech-stack {
 			padding-top: 45%;
 		}
