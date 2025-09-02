@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
 import icon from 'astro-icon';
@@ -11,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://one-9qg.pages.dev",
+  site: "https://dmouayad.github.io",
   integrations: [icon(), mdx(), sitemap()],
   vite: {
     build: {
