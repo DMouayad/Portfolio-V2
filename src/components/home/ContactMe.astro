@@ -2,18 +2,19 @@
 import Footer from "@components/Footer.astro";
 import { SITE_DATA } from "@data/siteData";
 import { Icon } from "astro-icon/components";
+const { email, accounts } = SITE_DATA.home.contactMe;
 ---
 
 <section class="section" id="contact">
     <div class="section-header">Get in Touch</div>
     <p>I'll be happy to hear your suggestions.</p>
     <p>So, feel free to contribute!</p>
-    <a href={"mailto:" + SITE_DATA.home.contact.email}>
-        {SITE_DATA.home.contact.email}
+    <a href={"mailto:" + email}>
+        {email}
     </a>
     <div class="icons-set">
         {
-            SITE_DATA.home.contact.accounts.map((item) => {
+            accounts.map((item) => {
                 return (
                     <a
                         class=""

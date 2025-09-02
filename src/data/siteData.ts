@@ -10,7 +10,7 @@ export const SITE_DATA = {
         about: {
             name: "ONE",
         },
-        contact: {
+        contactMe: {
             email: 'me@example.com',
             accounts: [
                 {
