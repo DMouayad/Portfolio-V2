@@ -51,6 +51,7 @@ import { SITE_DATA } from "@data/siteData";
     }
     .profile p {
         margin-bottom: 8px;
+        font-size: var(--text-sm);
     }
     .profile .img-shade {
         background: var(--image-shade);
@@ -64,9 +65,9 @@ import { SITE_DATA } from "@data/siteData";
 
     .profile .img-wrapper {
         max-width: 400px;
-        justify-self: center;
+        justify-self: normal;
         position: relative;
-        width: 84%;
+        width: 80%;
     }
     a.link {
         color: var(--accent-regular);
@@ -79,6 +80,12 @@ import { SITE_DATA } from "@data/siteData";
             grid-gap: 3rem;
             align-items: center;
             justify-content: space-between;
+        }
+        .profile p {
+            font-size: var(--text-base);
+        }
+        .profile .img-wrapper {
+            justify-self: center;
         }
     }
 </style>
