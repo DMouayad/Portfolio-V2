@@ -26,15 +26,13 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { title, description, publishDate, techStack, links } = entry.data;
 const timeToRead = simpleReadingTime(entry.body);
-
-const homeURL = Astro.url.origin;
 ---
 
 <BaseLayout title={title} description={description}>
 	<Nav showNavMenu={false} />
 	<div class="page-wrapper">
 		<div class="sidebar">
-			<a class="back-button" href={homeURL.toString() + "#experiences"}
+			<a class="back-button" href={"/#experiences"}
 				><Icon size={20} name="carbon:chevron-left" /> back to experiences</a
 			>
 			{
