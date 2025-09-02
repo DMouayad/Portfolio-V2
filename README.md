@@ -2,6 +2,9 @@
 # ONE
 
 A minimal portfolio website template built with [Astro](https://astro.build).
+</br>
+
+## [live preview 🚀](https://one-9qg.pages.dev/)
 
 ![Screenshot of the ONE template](/readme_assets/screenshot.png)
 
