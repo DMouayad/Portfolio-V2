@@ -175,7 +175,7 @@ body {
 	flex-direction: column;
 }
 
-.section-header {
+.section-title {
 	max-width: 50ch;
 	font-size: var(--text-md);
 	color: var(--gray-0);
@@ -198,7 +198,7 @@ body {
 		margin-inline: auto;
 	}
 
-	.section-header {
+	.section-title {
 		grid-area: header;
 		font-size: 24px;
 	}
