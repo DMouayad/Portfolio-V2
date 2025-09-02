@@ -1,0 +1,78 @@
+---
+title: Data-Driven Dreams
+publishDate: 2023-01-10 00:00:00
+img: /images/600x400.webp
+img_alt: data and dreams.
+description: |
+  An analytics platform to help people track their sleep patterns and dreams.
+links:
+  - label: GitHub
+    url: /
+  - label: Figma
+    url: /
+techStack:
+  - Dev
+  - Data
+  - Health
+---
+import { Image } from 'astro:assets';
+import TwoCol from '../../components/content/TwoCol.astro';
+import StyledTable from '../../components/content/StyledTable.astro';
+import image1 from "../../images/600x400.webp";
+import mainImage from '../../images/1920x1080.png';
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere commodo venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam non ligula vel metus efficitur hendrerit.
+
+<Image src={mainImage} alt="data and dreams." />
+
+### Key Metrics Tracked
+
+<StyledTable
+    headers={["Metric", "Data Source", "Analysis Method"]}
+    rows={[
+        ["Sleep Duration", "Wearable Device", "Time Series"],
+        ["Dream Sentiment", "User Journal", "NLP"],
+        ["Sleep Quality", "Wearable Device", "Correlation"],
+        ["REM Cycles", "Wearable Device", "Pattern Recognition"]
+    ]}
+/>
+
+<TwoCol>
+    <div slot="left">
+        <h3>Personalized Insights</h3>
+        <p>Our platform provides personalized insights based on your sleep data. We use machine learning models to identify patterns and correlations that can help you improve your sleep quality and understand your dreams better. The dashboard visualizes trends over time.</p>
+        <ul>
+            <li>Customizable dashboard</li>
+            <li>Weekly summary reports</li>
+            <li>Actionable recommendations</li>
+        </ul>
+    </div>
+    <div slot="right">
+        <Image src={image1} alt="data and dreams." />
+    </div>
+</TwoCol>
+
+### Data Export Example
+Users can export their data in JSON format.
+
+```json
+{
+  "userId": "user-123",
+  "sleepData": [
+    {
+      "date": "2023-01-09",
+      "duration": "8h 15m",
+      "quality": "good"
+    }
+  ],
+  "dreamJournal": [
+    {
+      "date": "2023-01-09",
+      "entry": "Dreamt of flying over mountains.",
+      "sentiment": "positive"
+    }
+  ]
+}
+```
+
+In hac habitasse platea dictumst. Praesent et mauris ut mi dapibus semper. Curabitur tortor justo, efficitur sit amet pretium cursus, porta eget odio. Cras ac venenatis dolor. Donec laoreet posuere malesuada.

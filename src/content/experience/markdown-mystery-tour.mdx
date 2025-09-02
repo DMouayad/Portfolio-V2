@@ -1,0 +1,70 @@
+---
+title: Markdown Mystery Tour
+publishDate: 2020-03-02 00:00:00
+img: /images/600x400.webp
+img_alt: Iridescent ripples of a bright blue and pink liquid
+description: |
+  We designed a whodunnit-style game to introduce Markdown formatting. Suspense — suspicion — syntax!
+links:
+  - label: GitHub
+    url: /
+  - label: Figma
+    url: /
+techStack:
+  - Design
+  - Dev
+  - User Testing
+---
+import { Image } from 'astro:assets';
+import TwoCol from '../../components/content/TwoCol.astro';
+import StyledTable from '../../components/content/StyledTable.astro';
+import image1 from "../../images/600x400.webp";
+import mainImage from '../../images/1920x1080.png';
+
+## Level-two heading
+
+> Tell me and I forget. Teach me and I remember. Involve me and I learn.
+
+Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
+
+<Image src={mainImage} alt="Iridescent ripples of a bright blue and pink liquid" />
+
+### Game Chapters
+
+<StyledTable
+    headers={["Chapter", "Topic", "Status"]}
+    rows={[
+        ["The Case of the Missing Header", "Headers", "Complete"],
+        ["The Bold and the Baffled", "Emphasis", "Complete"],
+        ["A List of Suspects", "Lists", "Complete"],
+        ["The Linked Alibi", "Links", "Complete"]
+    ]}
+/>
+
+<TwoCol>
+    <div slot="left">
+        <h3>Interactive Learning</h3>
+        <p>The Markdown Mystery Tour is an interactive game designed to teach Markdown syntax in a fun and engaging way. Each chapter presents a new mystery that can only be solved by correctly applying Markdown formatting. We conducted extensive user testing to ensure the game was both educational and entertaining.</p>
+        <ul>
+            <li>Gamified learning experience</li>
+            <li>Instant feedback on answers</li>
+            <li>Progress tracking</li>
+        </ul>
+    </div>
+    <div slot="right">
+        <Image src={image1} alt="Iridescent ripples of a bright blue and pink liquid" />
+    </div>
+</TwoCol>
+
+### Example Puzzle
+Here is an example of a puzzle from the game.
+
+<pre>
+<code>
+**Clue:** The secret message is *hidden* in plain sight.
+
+**Instructions:** Make the word "hidden" italicized to reveal the next clue.
+</code>
+</pre>
+
+Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel quam elementum pulvinar etiam non.
