@@ -26,7 +26,7 @@
 	--image-shade: #e8e6e6;
 	--card-border: #e1e4e8;
 	--card-title: #001aff;
-	--card-content-color: #000000d9;
+	--card-text-color: #000000d9;
 
 
 	/* Shadows */
@@ -68,7 +68,7 @@
 
 	--carousel-arrow-bg-color: transparent;
 	--carousel-arrow-border-color: var(--card-border);
-	--carousel-arrow-color: var(--card-content-color);
+	--carousel-arrow-color: var(--card-text-color);
 
 	--carousel-dot-size: 10px;
 	--carousel-dots-spacing: 16px;
@@ -101,7 +101,7 @@
 	--secondary-text-color: #ffffff99;
 
 	--card-border: #373c3e;
-	--card-content-color: #ffffffd9;
+	--card-text-color: #ffffffd9;
 	--card-title: #86b5ff;
 
 	--accent-regular: #d15f61;
