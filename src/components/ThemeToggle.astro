@@ -46,12 +46,12 @@ import { Icon } from "astro-icon/components";
 	/* Show moon icon in light theme */
 	.icon.dark {
 		opacity: 1;
-		transform: translateY(0) scale(1);
+		transform: translateY(0) scale(1) rotate(18deg);
 	}
 
 	.icon.light {
 		opacity: 0;
-		transform: translateY(-100%) scale(0.5);
+		transform: translateY(-100%) scale(0.5) rotate(180deg);
 	}
 
 	/* Show sun icon in dark theme */
@@ -62,7 +62,7 @@ import { Icon } from "astro-icon/components";
 
 	:global(.theme-dark) .icon.dark {
 		opacity: 0;
-		transform: translateY(100%) scale(0.5);
+		transform: translateY(100%) scale(0.5) rotate(180deg);
 	}
 </style>
 
