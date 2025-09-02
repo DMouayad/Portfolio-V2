@@ -7,8 +7,11 @@ const { email, accounts } = SITE_DATA.home.contactMe;
 
 <section class="section" id="contact">
     <div class="section-title">Get in Touch</div>
-    <p>I'll be happy to hear your suggestions.</p>
-    <p>So, feel free to contribute!</p>
+    <p class="section-subtitle">
+        I'll be happy to hear your suggestions.
+        <br />
+        So, feel free to contribute!
+    </p>
     <a href={"mailto:" + email}>
         {email}
     </a>
@@ -42,9 +45,6 @@ const { email, accounts } = SITE_DATA.home.contactMe;
         display: flex;
         gap: 1.2rem;
         flex-wrap: wrap;
-    }
-    p {
-        color: var(--secondary-text-color);
     }
     .contact-icon {
         width: 2rem;
