@@ -1,6 +1,6 @@
 ---
 import Image from "astro/components/Image.astro";
-import avatarImg from "../../images/400.webp";
+import avatarImg from "../../images/750.png";
 import { SITE_DATA } from "@data/siteData";
 ---
 
@@ -8,11 +8,27 @@ import { SITE_DATA } from "@data/siteData";
     <div>
         <header class="section-header">
             Hello,<br />
-            My name is {SITE_DATA.home.about.name}
+            My name is <span style="color: var(--accent-regular);">
+                {SITE_DATA.home.about.name}
+            </span>
         </header>
-        <p>I'm a Minimal personal website built with Astro.</p>
-        <p>I'm superior in every way.</p>
-        <p>I work with HTML & CSS only 😎 (and a lil bit of vanilla JS)</p>
+        <p>
+            A minimal and sleek portfolio template designed to showcase your
+            work in style. I'm built for performance, scoring 100% score on
+            Lighthouse.
+        </p>
+        <p>
+            I accomplish this through responsive images and efficient loading of
+            CSS, JavaScript, and fonts.
+        </p>
+        <p>
+            Feel free to customize me to fit your needs. I'm open source and
+            available on
+            <span>
+                <a class="link" href="https://github.com/dmouayad/one">GitHub</a
+                >
+            </span>
+        </p>
     </div>
     <div class="img-wrapper">
         <Image
@@ -47,12 +63,15 @@ import { SITE_DATA } from "@data/siteData";
     }
 
     .profile .img-wrapper {
-        max-width: 300px;
+        max-width: 400px;
         justify-self: center;
         position: relative;
         width: 84%;
     }
-
+    a.link {
+        color: var(--accent-regular);
+        font-weight: bold;
+    }
     @media (min-width: 50em) {
         .profile {
             display: grid;
