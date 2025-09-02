@@ -2,9 +2,9 @@
 import { Icon } from "astro-icon/components";
 
 interface Props {
-    showSocials: boolean;
+    showSocials?: boolean;
 }
-const { showSocials } = Astro.props;
+const { showSocials = false } = Astro.props;
 ---
 
 <footer class={showSocials ? "" : "no-socials"}>
@@ -21,9 +21,8 @@ const { showSocials } = Astro.props;
     {
         showSocials && (
             <p class="socials">
-                <a href="https://twitter.com/me"> Twitter</a>
-                <a href="https://github.com/me"> GitHub</a>
-                <a href="https://codepen.io/me"> CodePen</a>
+                <a href="https://github.com/dmouayad"> GitHub</a>
+                <a href="https://codepen.io/dmouayad"> CodePen</a>
             </p>
         )
     }
