@@ -26,14 +26,19 @@ const { showNavMenu } = Astro.props;
 	<div class="menu-header">
 		<a href="/" class="site-title"> {SITE_DATA.seo.siteTitle} </a>
 
-		<menu-button>
-			<template>
-				<button class="menu-button" aria-expanded="false">
-					<span class="sr-only">Menu</span>
-					<Icon name="carbon:menu" />
-				</button>
-			</template>
-		</menu-button>
+		<div class="header-actions">
+			<div class="mobile-theme-toggle">
+				<ThemeToggle />
+			</div>
+			<menu-button>
+				<template>
+					<button class="menu-button" aria-expanded="false">
+						<span class="sr-only">Menu</span>
+						<Icon name="carbon:menu" />
+					</button>
+				</template>
+			</menu-button>
+		</div>
 	</div>
 
 	<noscript>
@@ -76,86 +81,12 @@ const { showNavMenu } = Astro.props;
 				</ul>
 			)
 		}
-		<div class="theme-toggle">
+		<div class="theme-toggle desktop-theme-toggle">
 			<ThemeToggle />
 		</div>
 	</div>
 </nav>
-
-<script>
-	class MenuButton extends HTMLElement {
-		constructor() {
-			super();
-
-			// Inject menu toggle button when JS runs.
-			this.appendChild(
-				this.querySelector("template")!.content.cloneNode(true),
-			);
-			const btn = this.querySelector("button")!;
-
-			// Hide menu (shown by default to support no-JS browsers).
-			const menu = document.getElementById("menu-content")!;
-			menu.hidden = true;
-			// Add "menu-content" class in JS to avoid covering content in non-JS browsers.
-			menu.classList.add("menu-content");
-
-			/** Set whether the menu is currently expanded or collapsed. */
-			const setExpanded = (expand: boolean) => {
-				btn.setAttribute("aria-expanded", expand ? "true" : "false");
-				menu.hidden = !expand;
-			};
-
-			// Toggle menu visibility when the menu button is clicked.
-			btn.addEventListener("click", () => setExpanded(menu.hidden));
-
-			// Hide menu button for large screens.
-			const handleViewports = (
-				e: MediaQueryList | MediaQueryListEvent,
-			) => {
-				setExpanded(e.matches);
-				btn.hidden = e.matches;
-			};
-			const mediaQueries = window.matchMedia("(min-width: 50em)");
-			handleViewports(mediaQueries);
-			mediaQueries.addEventListener("change", handleViewports);
-		}
-	}
-	customElements.define("menu-button", MenuButton);
-</script>
-
-<script>
-	document.addEventListener("DOMContentLoaded", () => {
-		const sections = document.querySelectorAll("section[id]");
-		const navLinks = document.querySelectorAll(".nav-items a.link");
-
-		if (!sections.length || !navLinks.length) return;
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) {
-						const id = entry.target.id;
-						for (const link of navLinks) {
-							if (link.getAttribute("href") === `#${id}`) {
-								link.setAttribute("aria-current", "page");
-							} else {
-								link.removeAttribute("aria-current");
-							}
-						}
-					}
-				}
-			},
-			{
-				rootMargin: "-50% 0px -50% 0px",
-			},
-		);
-
-		for (const section of sections) {
-			observer.observe(section);
-		}
-	});
-</script>
-
+<script src="../scripts/navbar.ts"></script>
 <style>
 	nav {
 		z-index: 1;
@@ -166,6 +97,7 @@ const { showNavMenu } = Astro.props;
 		font-family: var(--font-body);
 		transition: var(--theme-transition);
 		display: flex;
+		flex-direction: column;
 	}
 
 	.menu-header {
@@ -200,18 +132,14 @@ const { showNavMenu } = Astro.props;
 		position: relative;
 		display: flex;
 		border: 0;
-		border-radius: 999rem;
 		padding: 0.5rem;
 		font-size: 1.5rem;
-		color: var(--gray-300);
-		background: var(--bg-color);
-		box-shadow: var(--shadow-sm);
+		color: var(--secondary-text-color);
+		background: transparent;
 	}
 
 	.menu-button[aria-expanded="true"] {
 		color: var(--gray-0);
-		background: linear-gradient(180deg, var(--gray-600), transparent),
-			radial-gradient(var(--bg-color), var(--gray-800) 150%);
 	}
 
 	.menu-button[hidden] {
@@ -219,17 +147,15 @@ const { showNavMenu } = Astro.props;
 	}
 
 	.menu-content {
-		position: absolute;
-		left: 0;
-		right: 0;
-		background-color: var(--bg-color);
+		transition: background-color var(--theme-transition);
+		background-color: var(--gray-800);
 	}
 
 	.nav-items {
 		margin: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0;
+		gap: 2rem;
 		font-size: var(--text-md);
 		line-height: 1.2;
 		list-style: none;
@@ -255,6 +181,21 @@ const { showNavMenu } = Astro.props;
 		height: calc(var(--icon-size) + 2 * var(--icon-padding));
 	}
 
+	.header-actions {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1.3rem;
+	}
+
+	.mobile-theme-toggle {
+		display: block;
+	}
+
+	.desktop-theme-toggle {
+		display: none;
+	}
+
 	@media (min-width: 50em) {
 		nav {
 			display: grid;
@@ -263,6 +204,7 @@ const { showNavMenu } = Astro.props;
 			align-items: center;
 			padding: 2.5rem 3rem;
 			gap: 1rem;
+			flex-direction: row;
 		}
 		.mobile-page-title {
 			display: none;
@@ -290,6 +232,7 @@ const { showNavMenu } = Astro.props;
 			justify-content: flex-end;
 			font-size: var(--text-sm);
 			border: 0;
+			gap: 0;
 			padding: 0 0.5625rem;
 		}
 
@@ -314,6 +257,14 @@ const { showNavMenu } = Astro.props;
 		}
 		.page-title {
 			font-size: var(--text-xl);
+		}
+
+		.mobile-theme-toggle {
+			display: none;
+		}
+
+		.desktop-theme-toggle {
+			display: flex;
 		}
 	}
 
