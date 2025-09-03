@@ -8,93 +8,89 @@ interface Props {
 const { item } = Astro.props;
 const id = item.id;
 const { title, description, img, img_alt } = item.data;
+const pageURL = "/experience/" + id;
 ---
 
 <div class="experience-card">
-    <a href={"/experience/" + id} target="_blank">
+    <a href={pageURL} target="_blank">
         <Image src={img} alt={img_alt ?? title} />
     </a>
-    <a class="title" href={"/experience/" + id} target="_blank">
+    <a class="title" href={pageURL} target="_blank">
         {title}
     </a>
     <p class="description">{description}</p>
-    <style>
-        .experience-card {
-            position: relative;
-            max-width: 350px;
-            max-width: min(80vw, 350px);
-            max-height: 400px;
-            border: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .experience-card img {
-            width: 350px;
-            height: 230px;
-            border-radius: 5px;
-        }
-        .title {
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: var(--text-lg);
-            text-decoration: none;
-            color: var(--card-text-color);
-            font-weight: 600;
-            margin-top: 20px;
-        }
-
-        .description {
-            font-size: var(--text-base);
-            color: var(--card-text-color);
-            overflow: hidden;
-            margin: 0.6em auto;
-            font-weight: 400;
-            word-wrap: break-word;
-        }
-
-        .footer {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .tags {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .tag {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-size: var(--text-xs);
-            color: var(--gray-100);
-        }
-
-        .tag-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        .links {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .links a {
-            color: var(--gray-400);
-            font-size: 1.25rem;
-        }
-
-        .links a:hover {
-            color: var(--primary-color);
-        }
-    </style>
+    <a class="button" href={pageURL} target="_blank">View details</a>
 </div>
+
+<style>
+    .experience-card {
+        position: relative;
+        max-width: 350px;
+        max-width: min(80vw, 350px);
+        max-height: 400px;
+        border: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .experience-card img {
+        width: 350px;
+        height: 230px;
+        border-radius: 5px;
+    }
+    .title {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: var(--text-lg);
+        text-decoration: none;
+        color: var(--card-text-color);
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .description {
+        font-size: var(--text-base);
+        color: var(--card-text-color);
+        overflow: hidden;
+        margin: 0.6em auto;
+        font-weight: 400;
+        word-wrap: break-word;
+    }
+
+    .footer {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .tag {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: var(--text-xs);
+        color: var(--gray-100);
+    }
+
+    .tag-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+    .button {
+        text-decoration: none;
+        color: var(--accent-regular);
+    }
+    .button:hover {
+        text-decoration: underline;
+    }
+</style>
