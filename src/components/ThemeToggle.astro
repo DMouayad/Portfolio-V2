@@ -5,8 +5,8 @@ import { Icon } from "astro-icon/components";
 <theme-toggle>
 	<button>
 		<span class="sr-only">Toggle theme</span>
-		<span class="icon light"><Icon name="carbon:sun" /></span>
-		<span class="icon dark"><Icon name="carbon:moon" /></span>
+		<span class="icon light"><Icon size={20} name="carbon:sun" /></span>
+		<span class="icon dark"><Icon size={20} name="carbon:moon" /></span>
 	</button>
 </theme-toggle>
 
@@ -14,7 +14,7 @@ import { Icon } from "astro-icon/components";
 	button {
 		position: relative;
 		border: 2px solid var(--accent-regular);
-		border-radius: 50px;
+		border-radius: 100%;
 		padding: 0;
 		margin-bottom: 6px;
 		cursor: pointer;
@@ -41,7 +41,6 @@ import { Icon } from "astro-icon/components";
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.1rem;
 		color: var(--bg-color);
 		transition:
 			color 0.5s ease-in-out,
