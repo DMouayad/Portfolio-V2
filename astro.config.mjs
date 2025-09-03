@@ -19,6 +19,7 @@ export default defineConfig({
     }
   },
   image: {
+    domains: ['https://avatars.githubusercontent.com'],
     responsiveStyles: true, layout: 'constrained',
   }
 });
