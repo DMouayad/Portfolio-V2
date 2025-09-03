@@ -1,19 +1,18 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import placeholder from "../../images/600x400.webp";
 
 interface Props {
     item: CollectionEntry<"experience">;
 }
 const { item } = Astro.props;
 const id = item.id;
-const { title, description, img_alt } = item.data;
+const { title, description, img, img_alt } = item.data;
 ---
 
 <div class="experience-card">
     <a href={"/experience/" + id} target="_blank">
-        <Image src={placeholder} alt={img_alt ?? title} />
+        <Image src={img} alt={img_alt ?? title} />
     </a>
     <a class="title" href={"/experience/" + id} target="_blank">
         {title}

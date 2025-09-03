@@ -5,7 +5,7 @@ export const collections = {
 	experience: defineCollection({
 		// Load Markdown files in the src/content/work directory.
 		loader: glob({ base: './src/content/experience', pattern: ['**/*.md', '**/*mdx'] }),
-		schema: z.object({
+		schema: ({ image }) => z.object({
 			title: z.string(),
 			description: z.string(),
 			publishDate: z.coerce.date(),
@@ -15,7 +15,7 @@ export const collections = {
 				url: z.string(),
 				icon: z.string().optional(),
 			})),
-			img: z.string(),
+			img: image(),
 			img_alt: z.string().optional(),
 		}),
 	}),
