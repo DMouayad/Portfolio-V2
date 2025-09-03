@@ -43,6 +43,7 @@ const {
 			url("/fonts/RobotoSlab-VariableFont.woff2") format("woff2"),
 			url("/fonts/RobotoSlab-VariableFont.ttf") format("truetype");
 		font-display: swap;
+		font-optical-sizing: auto;
 		font-weight: 100 900;
 		font-style: normal;
 	}
@@ -54,6 +55,15 @@ const {
 		font-display: swap;
 		font-weight: 100 900;
 		font-style: normal;
+		font-optical-sizing: auto;
+	}
+	@font-face {
+		font-family: "Montserrat";
+		src: url("/fonts/Montserrat-VariableFont_wght.woff2") format("woff2");
+		font-display: swap;
+		font-weight: 100 900;
+		font-style: normal;
+		font-optical-sizing: auto;
 	}
 
 	body {
@@ -61,6 +71,9 @@ const {
 	}
 	h1 {
 		font-family: "Roboto Slab", sans-serif;
+	}
+	p {
+		font-family: "Montserrat", sans-serif;
 	}
 </style>
 
