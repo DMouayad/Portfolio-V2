@@ -17,7 +17,6 @@ import { Icon } from "astro-icon/components";
 		position: relative;
 		border: none;
 		padding: 0;
-		margin-bottom: 6px;
 		cursor: pointer;
 		background-color: var(--bg-color);
 		width: 2.1rem;
@@ -69,6 +68,11 @@ import { Icon } from "astro-icon/components";
 	:global(.theme-dark) .icon.dark {
 		opacity: 0;
 		transform: translateY(100%) scale(0.5) rotate(180deg);
+	}
+	@media (min-width: 50em) {
+		.button {
+			margin-bottom: 6px;
+		}
 	}
 </style>
 
