@@ -72,17 +72,6 @@ const mobileSlidesIds = Array.from({ length: mobileSlidesCount }, (_, i) => i);
         {
             mobileSlidesIds.map((index) => (
                 <div id={carouselId + "_" + index} class="carousel__item">
-                    {/* <div
-                        class="mobile-card-wrapper"
-                        style={`height: ${mobileCardHeight}px`}
-                    >
-                        {cardType === "experience" && (
-                            <ExperienceCard item={items[id]} />
-                        )}
-                        {cardType === "project" && (
-                            <ProjectCard item={items[id]} />
-                        )}
-                    </div> */}
                     <div class="cards-grid">
                         {items
                             .slice(
@@ -104,12 +93,14 @@ const mobileSlidesIds = Array.from({ length: mobileSlidesCount }, (_, i) => i);
 </div>
 <style>
     .cards-grid {
-        margin-top: 38px;
+        margin-top: 32px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 30px;
         overflow: hidden;
         justify-items: center;
+        align-content: center;
+        min-height: 410px;
     }
     .desktop-carousel {
         display: block;
@@ -127,6 +118,7 @@ const mobileSlidesIds = Array.from({ length: mobileSlidesCount }, (_, i) => i);
     @media (min-width: 50em) {
         .cards-grid {
             max-height: 766px;
+            align-items: center;
         }
         :root {
             --carousel-arrows-left: -55px;
