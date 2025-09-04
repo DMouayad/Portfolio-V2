@@ -287,6 +287,10 @@ const timeToRead = simpleReadingTime(entry.body);
 	.content :global(a:focus) {
 		text-decoration-color: currentColor;
 	}
+	.content :global(.bordered) {
+		border-radius: 8px;
+		border: 2px solid var(--gray-100);
+	}
 
 	@media (min-width: 50em) {
 		.back-link {
