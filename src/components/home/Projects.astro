@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import CardCarousel from "@components/CardCarousel.astro";
+import { Image } from "astro:assets";
 
 // Content Fetching: List four most recent projects
 const projects = (await getCollection("project")).sort(
@@ -9,8 +10,31 @@ const projects = (await getCollection("project")).sort(
 ---
 
 <section class="section" id="projects">
-    <header class="section-title">Projects</header>
-    <p class="section-subtitle">These are some of my open-source projects</p>
+    <header class="section-title">Projects.</header>
+    <div class="row">
+        <p class="section-subtitle">
+            These are some of my open-source projects.
+        </p>
+        <!-- replace with your own github link, username and avatar image.-->
+        <a
+            href="https://github.com/dmouayad"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="github">
+                <Image
+                    src="https://avatars.githubusercontent.com/u/82384138?v=4"
+                    alt="GitHub"
+                    width="54"
+                    height="54"
+                />
+                <div>
+                    <p class="name">Mouayad Alhamwi</p>
+                    <p class="github-username">@dmouayad</p>
+                </div>
+            </div>
+        </a>
+    </div>
     <CardCarousel
         carouselId="projectsSlider"
         desktopItemPerSlide={6}
@@ -20,3 +44,40 @@ const projects = (await getCollection("project")).sort(
         mobileCardHeight={250}
     />
 </section>
+
+<style>
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 30px;
+    }
+    .row a {
+        text-decoration: none;
+        color: var(--gray-0);
+    }
+    .github {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    .github img {
+        border-radius: 100%;
+    }
+    .name {
+        font-size: var(--text-base);
+        font-weight: 600;
+    }
+    .github-username {
+        font-size: var(--text-sm);
+        color: var(--secondary-text-color);
+    }
+    @media (min-width: 50em) {
+        .row {
+            flex-direction: row;
+            gap: 0;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+</style>
