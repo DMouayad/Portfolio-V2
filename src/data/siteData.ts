@@ -9,7 +9,7 @@ export const SITE_DATA = {
     },
     home: {
         about: {
-            name: "Mouayad Alhamwi",
+            name: "Mouayad",
         },
         contactMe: {
             email: 'mouayad.alhamwi.ma@gmail.com',
