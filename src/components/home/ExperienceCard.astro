@@ -89,8 +89,25 @@ const pageURL = "/experience/" + id;
     .button {
         text-decoration: none;
         color: var(--accent-regular);
+        transition: all 0.2s ease-in-out;
+        color: var(--secondary-text-color);
     }
-    .button:hover {
-        text-decoration: underline;
+    .experience-card:hover .button {
+        font-weight: 500;
+        color: var(--gray-0);
+    }
+    .button::after {
+        background-color: currentColor;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 0.1em;
+        transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        width: 0;
+    }
+    .experience-card:hover .button::after {
+        width: 90px;
     }
 </style>
