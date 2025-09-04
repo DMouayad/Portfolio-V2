@@ -6,11 +6,12 @@ import { SITE_DATA } from "@data/siteData";
 
 <section class="section profile" id="about">
     <div>
-        <header class="section-title">
+        <header
+            class="section-title"
+            style="line-height: 1.1;margin-bottom:1.7rem;"
+        >
             Hello,<br />
-            My name is <span style="color: var(--accent-regular);">
-                {SITE_DATA.home.about.name}
-            </span>
+            My name is {SITE_DATA.home.about.name}
         </header>
         <p>I'm a freelance Flutter developer.</p>
         <p>
@@ -49,6 +50,7 @@ import { SITE_DATA } from "@data/siteData";
         margin-bottom: 8px;
         font-size: var(--text-sm);
         color: var(--secondary-text-color);
+        max-width: 500px;
     }
     .profile .img-shade {
         background: var(--image-shade);
