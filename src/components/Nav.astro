@@ -60,7 +60,7 @@ const { showNavMenu } = Astro.props;
 			}
 		</ul>
 	</noscript>
-	<div id="menu-content" hidden>
+	<div id="menu-content" class="menu-content">
 		{
 			showNavMenu && (
 				<ul class="nav-items">
@@ -101,7 +101,9 @@ const { showNavMenu } = Astro.props;
 	}
 
 	.menu-header {
+		position: relative;
 		display: flex;
+		background-color: var(--bg-color);
 		justify-content: space-between;
 		gap: 0.5rem;
 		padding: 1rem;
@@ -136,6 +138,7 @@ const { showNavMenu } = Astro.props;
 		font-size: 1.5rem;
 		color: var(--secondary-text-color);
 		background: transparent;
+		cursor: pointer;
 	}
 
 	.menu-button[aria-expanded="true"] {
@@ -146,9 +149,19 @@ const { showNavMenu } = Astro.props;
 		display: none;
 	}
 
+	.menu-content.open {
+		transform: translateY(75px);
+	}
 	.menu-content {
-		transition: background-color var(--theme-transition);
+		z-index: -99;
+		position: absolute;
+		display: block;
+		left: 0;
+		right: 0;
+		height: auto;
+		transition: all var(--theme-transition);
 		background-color: var(--gray-800);
+		transform: translateY(-100%);
 	}
 
 	.nav-items {
@@ -215,6 +228,7 @@ const { showNavMenu } = Astro.props;
 		}
 
 		.menu-header {
+			background-color: transparent;
 			padding: 0;
 		}
 
