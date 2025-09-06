@@ -1,7 +1,7 @@
 
 
 export const SITE_DATA = {
-    navTitle: "MHM",
+    navTitle: "MHM.",
     seo: {
         siteTitle: "Mouayad Alhamwi",
         homeTitle: "Personal website",
