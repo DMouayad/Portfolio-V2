@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import CardCarousel from "@components/CardCarousel.astro";
-import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 // Content Fetching: List four most recent projects
 const projects = (await getCollection("project")).sort(
@@ -21,13 +21,8 @@ const projects = (await getCollection("project")).sort(
             target="_blank"
             rel="noopener noreferrer"
         >
-            <div class="github">
-                <Image
-                    src="https://avatars.githubusercontent.com/u/82384138?v=4"
-                    alt="GitHub"
-                    width="54"
-                    height="54"
-                />
+            <div class="github-card">
+                <Icon name="carbon:logo-github" width="54" height="54" />
                 <div>
                     <p class="name">Mouayad Alhamwi</p>
                     <p class="github-username">@dmouayad</p>
@@ -56,12 +51,16 @@ const projects = (await getCollection("project")).sort(
         text-decoration: none;
         color: var(--gray-0);
     }
-    .github {
+    .github-card {
         display: flex;
         gap: 12px;
         align-items: center;
+        border: 2px solid transparent;
+        padding: 4px 8px;
+        border-radius: 5px;
+        transition: border-color 0.2s ease-in-out;
     }
-    .github img {
+    .github-card img {
         border-radius: 100%;
     }
     .name {
@@ -71,6 +70,9 @@ const projects = (await getCollection("project")).sort(
     .github-username {
         font-size: var(--text-sm);
         color: var(--secondary-text-color);
+    }
+    .github-card:hover {
+        border-color: var(--gray-200);
     }
     @media (min-width: 50em) {
         .row {
