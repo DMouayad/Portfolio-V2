@@ -61,7 +61,7 @@
 	font-optical-sizing: auto;
 	/* Transitions */
 	--theme-transition: 0.3s ease-in-out;
-
+	--about-bg-block: url("/white-grid.png");
 	/* Custom Carousel */
 	--carousel-dot-color: var(--gray-700);
 	--carousel-dot-active-color: var(--gray-50);
@@ -103,7 +103,7 @@
 	--card-border: #373c3e;
 	--card-text-color: #ffffffd9;
 	--card-title: #86b5ff;
-
+	--about-bg-block: url("/dark-grid.png");
 	--accent-regular: #d15f61;
 
 	--active: #8CC7AF;
@@ -180,7 +180,7 @@ body {
 	font-size: var(--text-md);
 	color: var(--gray-0);
 	font-family: var(--font-body);
-	font-weight: 700;
+	font-weight: 600;
 	margin-bottom: 1rem;
 }
 
