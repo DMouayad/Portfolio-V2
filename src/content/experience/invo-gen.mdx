@@ -1,9 +1,9 @@
 ---
 title: InvoGen
 publishDate: 2025-07-01 00:00:00
-img: ./invo_gen.png
-img_alt: An invoice generation app.
-description: Created a simple app to generate invoices.
+img: ./invoGen.png
+img_alt: A floating invoice icon.
+description: "Created a simple app to generate invoices with image and PDF export."
 links:
   - label: GitHub
     url: /
@@ -14,58 +14,45 @@ techStack:
 import { Image } from 'astro:assets';
 import TwoCol from '../../components/content/TwoCol.astro';
 import StyledTable from '../../components/content/StyledTable.astro';
-import image1 from "./invo_gen.png";
-import mainImage from '../../images/1920x1080.png';
+import image1 from "./invoGen.png";
+import mainImage from './invoGen-cover.png';
+import colImage from './invoGen-2.png';
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere commodo venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam non ligula vel metus efficitur hendrerit.
+I was tasked by **MedCorset**, a local manufacturing company, to create an invoicing app.
+The requirements were simple but the use-case required crafting a custom app 
+from scratch.
 
 <Image src={mainImage} alt="A visualization of quantum entanglement." />
 
-### Project Features
+## Purpose of the project
 
-<StyledTable
-    headers={["Feature", "Status", "Complexity"]}
-    rows={[
-        ["Qubit Simulation", "Implemented", "High"],
-        ["Gate Operations", "Implemented", "Medium"],
-        ["Visualization", "In Progress", "Medium"],
-        ["Export Results", "Planned", "Low"]
-    ]}
-/>
+The goal was to replace the existing invoicing system which
+used paper invoice booklets and manual entry of invoices. The old system had
+many issues, including:
 
-<TwoCol>
-    <div slot="left">
-        <h3>Advanced Simulation</h3>
-        <p>Our simulator utilizes advanced algorithms to model quantum states with high fidelity. This allows students and researchers to experiment with complex quantum circuits without needing access to physical quantum hardware. We've focused on performance and accuracy to provide a realistic simulation environment.</p>
-        <ul>
-            <li>State vector simulation</li>
-            <li>Density matrix support</li>
-            <li>Noise modeling</li>
-        </ul>
-    </div>
-    <div slot="right">
-        <Image src={image1} alt="A visualization of quantum entanglement." />
-    </div>
-</TwoCol>
+- The invoice booklets were not standardized, making it difficult to track
+  invoices.
+- The invoice total had to be manually calculated, which was prone to human error.
 
-### Example Usage
-Here is a small example of how to define a quantum circuit using our Python SDK.
+ The developed software was a desktop app built with Flutter with the following
+ features:
 
-```python
-from quantum_simulator import QuantumCircuit
+ - Search for invoices by customer name or date.
+ - Products inventory.
+ - Product pricing by category.  
+ - Export invoices in PDF or PNG format.
 
-# Create a circuit with 2 qubits
-qc = QuantumCircuit(2)
+## The Process
 
-# Add a Hadamard gate on qubit 0
-qc.h(0)
+Since the project was simple, I directly started with the design of the database schema.
+I used SQLite database as it's easy to setup in a Flutter project.
 
-# Add a CNOT gate on control qubit 0 and target qubit 1
-qc.cnot(0, 1)
+The db schema was simple and consisted of the following tables:
 
-# Run the simulation
-result = qc.run()
-print(result.get_counts())
-```
+- Invoices
+- Customers
+- Items
 
-In hac habitasse platea dictumst. Praesent et mauris ut mi dapibus semper. Curabitur tortor justo, efficitur sit amet pretium cursus, porta eget odio. Cras ac venenatis dolor. Donec laoreet posuere malesuada.
+
+## Lessons learned
+
