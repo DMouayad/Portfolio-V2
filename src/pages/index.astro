@@ -1,26 +1,133 @@
 ---
 // Component Imports
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Nav from "../components/Nav.astro";
-import About from "../components/home/About.astro";
 import { SITE_DATA } from "@data/siteData";
-import ContactMe from "@components/home/ContactMe.astro";
-import Experiences from "@components/home/Experiences.astro";
-import Projects from "@components/home/Projects.astro";
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import SiteHeader from "@components/siteHeader.astro";
+import AboutCard from "@components/home/AboutCard.astro";
+import HeroCard from "@components/home/HeroCard.astro";
+import ProjectCard from "@components/home/ProjectCard.astro";
+import ProjectsCard from "@components/home/ProjectsCard.astro";
+import ExperiencesCard from "@components/home/ExperiencesCard.astro";
+import ContactCard from "@components/home/ContactCard.astro";
+import Card from "@components/Card.astro";
+import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 ---
 
 <BaseLayout
 	title={SITE_DATA.seo.homeTitle}
 	description={SITE_DATA.seo.description}
 >
-	<Nav showNavMenu={true} />
+	<div class="background"></div>
 	<div class="wrapper">
-		<About />
-		<Experiences />
-		<Projects />
-		<ContactMe />
+		<div class="main">
+			<HeroCard />
+			<AboutCard />
+			<ProjectsCard />
+			<ExperiencesCard />
+			<ContactCard />
+			<SiteInfoCard />
+		</div>
 	</div>
 </BaseLayout>
+
+<style>
+	.wrapper {
+		position: relative;
+		height: 100vh;
+		width: 100vw;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+	}
+	.main {
+		display: grid;
+		position: relative;
+		padding: 1.5rem;
+		gap: 0.5rem;
+		width: 100%;
+		height: 100%;
+		max-width: 74rem;
+		margin-inline: auto;
+		max-height: fit-content;
+
+		@media (min-width: 640px) {
+			gap: 0.5rem;
+		}
+		@media (min-width: 768px) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.75rem;
+		}
+		@media (min-width: 1024px) {
+			grid-template-rows: repeat(8, minmax(0, 1fr));
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 1rem;
+			max-height: 800px;
+		}
+	}
+	:root {
+		--bg-width: 50px;
+		--bg-height: 50px;
+	}
+	/* Animations */
+	@-webkit-keyframes bg-scrolling-reverse {
+		100% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	@-moz-keyframes bg-scrolling-reverse {
+		100% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	@-o-keyframes bg-scrolling-reverse {
+		100% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	@keyframes bg-scrolling-reverse {
+		100% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+
+	@-webkit-keyframes bg-scrolling {
+		0% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	@-moz-keyframes bg-scrolling {
+		0% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	@-o-keyframes bg-scrolling {
+		0% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	@keyframes bg-scrolling {
+		0% {
+			background-position: var(--bg-width) var(--bg-height);
+		}
+	}
+	.background {
+		background-image: var(--about-bg-block);
+		width: 100vw;
+		height: 100vh;
+		justify-self: normal;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		transition: all var(--theme-transition);
+		opacity: 0.5;
+		-webkit-animation: bg-scrolling-reverse 18s infinite; /* Safari 4+ */
+		-moz-animation: bg-scrolling-reverse 18s infinite; /* Fx 5+ */
+		-o-animation: bg-scrolling-reverse 18s infinite; /* Opera 12+ */
+		animation: bg-scrolling-reverse 18s infinite; /* IE 10+ */
+		-webkit-animation-timing-function: linear;
+		-moz-animation-timing-function: linear;
+		-o-animation-timing-function: linear;
+		animation-timing-function: linear;
+	}
+</style>

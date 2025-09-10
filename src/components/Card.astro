@@ -1,0 +1,57 @@
+---
+interface Props {
+    title?: string;
+    contentGap?: string;
+    contentJustify?: string;
+}
+const {
+    title,
+    contentGap = "0.5rem",
+    contentJustify = "space-around",
+} = Astro.props;
+---
+
+<div class="card">
+    {title && <div class="card-title">{title}</div>}
+    <div
+        class="content"
+        style={`gap: ${contentGap}; justify-content: ${contentJustify}`}
+    >
+        <slot />
+    </div>
+</div>
+
+<style>
+    .card {
+        height: 100%;
+        overflow: hidden;
+        background-color: var(--card-bg-color);
+        border-radius: 8px;
+        border: 1px solid var(--card-border);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        font-size: var(--text-sm);
+        transition: all var(--theme-transition);
+    }
+    .card:hover {
+        border-color: var(--accent-regular);
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+        gap: 0.7rem;
+        height: 100%;
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: var(--text-md);
+        font-weight: 600;
+        color: var(--gray-0);
+        margin-bottom: 0.4rem;
+    }
+</style>

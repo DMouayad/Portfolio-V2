@@ -1,0 +1,38 @@
+---
+import Card from "@components/Card.astro";
+import { SITE_DATA } from "@data/siteData";
+const { email } = SITE_DATA.home.contactMe;
+const currentYear = new Date().getFullYear();
+---
+
+<div class="contact-card">
+    <Card title="Get in Touch">
+        <p>
+            Feel free to contact me if you need any help or have a project in
+            mind.
+            <br />
+            <a href={"mailto:" + email}>
+                {email}
+            </a>
+        </p>
+    </Card>
+
+    <style>
+        .contact-card {
+            grid-column: span 1 / span 1;
+
+            @media (min-width: 768px) {
+                grid-row: span 2 / span 2;
+            }
+        }
+        a {
+            margin-block: 0.5625em 2em;
+            color: var(--secondary-text-color);
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+        p {
+            font-size: var(--text-sm);
+        }
+    </style>
+</div>

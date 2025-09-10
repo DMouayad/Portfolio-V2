@@ -1,0 +1,38 @@
+---
+import Card from "@components/Card.astro";
+---
+
+<div class="about-card">
+    <Card title="About me" contentGap="0.5rem">
+        <p>
+            I'm currently pursuing my Bachelor's degree in Information
+            Technology Engineering from the Syrian Virtual University.
+        </p>
+        <p>
+            I'm a Freelance Flutter developer but I also have solid background
+            in Front-End, Back-End and UI/UX Design.
+        </p>
+        <div>
+            My skill set includes:
+            <ul>
+                <li>Flutter\Dart</li>
+                <li>JavaScript</li>
+                <li>Node.js\Express.js</li>
+                <li>SQL</li>
+            </ul>
+        </div>
+    </Card>
+</div>
+
+<style>
+    .about-card {
+        grid-column: span 1 / span 1;
+
+        @media (min-width: 768px) {
+            grid-row: span 5 / span 5;
+        }
+    }
+    .about-card p {
+        font-size: var(--text-sm);
+    }
+</style>

@@ -1,0 +1,72 @@
+---
+import Card from "@components/Card.astro";
+import ThemeToggle from "@components/ThemeToggle.astro";
+import { SITE_DATA } from "@data/siteData";
+import { Icon } from "astro-icon/components";
+const { accounts } = SITE_DATA.home.contactMe;
+---
+
+<div class="hero-card">
+    <Card contentGap="2rem" contentJustify="space-between">
+        <div class="text">
+            <div class="header">
+                <div>Welcome,</div>
+                <ThemeToggle />
+            </div>
+            I'm
+            <span style="font-weight: bold;"> Mouayad alhamwi, </span>
+            a software engineer focused on Flutter, simple UI\UX and Open-Source
+            software.
+        </div>
+        <div class="icons-set">
+            {
+                accounts.map((item) => {
+                    return (
+                        <a
+                            class=""
+                            target="_blank"
+                            href={item.url}
+                            aria-label={item.buttonLabel}
+                        >
+                            <Icon name={item.icon} class="contact-icon" />
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </Card>
+</div>
+
+<style>
+    .hero-card {
+        grid-column: span 1 / span 1;
+
+        @media (min-width: 768px) {
+            grid-column: span 3 / span 3;
+            grid-row: span 3 / span 3;
+        }
+    }
+    .header {
+        font-size: var(--text-sm);
+        color: var(--accent-regular);
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .text {
+        font-size: var(--text-lg);
+    }
+
+    .icons-set {
+        display: flex;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+    }
+    .contact-icon {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.5rem;
+        color: var(--gray-0);
+    }
+</style>

@@ -1,0 +1,35 @@
+---
+import Card from "@components/Card.astro";
+import { getCollection } from "astro:content";
+const projects = (await getCollection("project")).sort(
+    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<div class="projects-card">
+    <Card title="Projects">
+        <p>These are some of my open-source projects.</p>
+        {
+            projects.map((project) => {
+                return (
+                    <a
+                        href={project.data.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {project.data.title}
+                    </a>
+                );
+            })
+        }
+    </Card>
+</div>
+
+<style>
+    .projects-card {
+        @media (min-width: 768px) {
+            grid-column: span 1 / span 1;
+            grid-row: span 5 / span 5;
+        }
+    }
+</style>
