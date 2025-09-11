@@ -17,7 +17,7 @@
 	--gray-999_40: hsla(var(--gray-999-basis), 0.4);
 	--gray-999: #ffffff;
 	--bg-color: #ffffff;
-	--card-bg-color: rgba(255, 255, 255, 0.5);
+	--card-bg-color: rgba(255, 255, 255, 70%);
 	--accent-regular: #ab4e4f;
 
 	--active: #56c096;
@@ -96,11 +96,12 @@
 	/* --bg-color: hsl(0, 0%, 7%); */
 	--bg-color: hsl(200, 6%, 10%);
 
-	--card-bg-color: hsl(0, 0%, 9%, 90%);
+	--card-bg-color: hsl(0, 0%, 9%, 95%);
 
 	--secondary-text-color: #ffffff99;
 
-	--card-border: #373c3e;
+	--card-border: #2c2c2c;
+	/* --card-border: #373c3e; */
 	--card-text-color: #ffffffd9;
 	--card-title: #86b5ff;
 	--about-bg-block: url("/dark-grid.png");
@@ -110,8 +111,6 @@
 	--accent-text-over: var(--gray-0);
 	--image-shade: #26292a;
 	--link-color: var(--active);
-
-	/* Custom Carousel */
 
 
 	/* shadows */
@@ -141,8 +140,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.5;
 }
-
-
 
 *,
 *::after,

@@ -2,14 +2,11 @@
 // Component Imports
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE_DATA } from "@data/siteData";
-import SiteHeader from "@components/siteHeader.astro";
 import AboutCard from "@components/home/AboutCard.astro";
 import HeroCard from "@components/home/HeroCard.astro";
-import ProjectCard from "@components/home/ProjectCard.astro";
 import ProjectsCard from "@components/home/ProjectsCard.astro";
 import ExperiencesCard from "@components/home/ExperiencesCard.astro";
 import ContactCard from "@components/home/ContactCard.astro";
-import Card from "@components/Card.astro";
 import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 ---
 
@@ -33,11 +30,14 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 <style>
 	.wrapper {
 		position: relative;
-		height: 100vh;
 		width: 100vw;
-		margin: 0;
+		margin: auto;
 		padding: 0;
 		overflow-x: hidden;
+
+		@media (min-width: 1024px) {
+			height: 100vh;
+		}
 	}
 	.main {
 		display: grid;
@@ -48,7 +48,6 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		height: 100%;
 		max-width: 74rem;
 		margin-inline: auto;
-		max-height: fit-content;
 
 		@media (min-width: 640px) {
 			gap: 0.5rem;
@@ -62,6 +61,7 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 			gap: 1rem;
 			max-height: 800px;
+			margin: auto;
 		}
 	}
 	:root {
@@ -90,26 +90,6 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		}
 	}
 
-	@-webkit-keyframes bg-scrolling {
-		0% {
-			background-position: var(--bg-width) var(--bg-height);
-		}
-	}
-	@-moz-keyframes bg-scrolling {
-		0% {
-			background-position: var(--bg-width) var(--bg-height);
-		}
-	}
-	@-o-keyframes bg-scrolling {
-		0% {
-			background-position: var(--bg-width) var(--bg-height);
-		}
-	}
-	@keyframes bg-scrolling {
-		0% {
-			background-position: var(--bg-width) var(--bg-height);
-		}
-	}
 	.background {
 		background-image: var(--about-bg-block);
 		width: 100vw;
@@ -121,10 +101,10 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		z-index: -1;
 		transition: all var(--theme-transition);
 		opacity: 0.5;
-		-webkit-animation: bg-scrolling-reverse 18s infinite; /* Safari 4+ */
-		-moz-animation: bg-scrolling-reverse 18s infinite; /* Fx 5+ */
-		-o-animation: bg-scrolling-reverse 18s infinite; /* Opera 12+ */
-		animation: bg-scrolling-reverse 18s infinite; /* IE 10+ */
+		-webkit-animation: bg-scrolling-reverse 30s infinite; /* Safari 4+ */
+		-moz-animation: bg-scrolling-reverse 30s infinite; /* Fx 5+ */
+		-o-animation: bg-scrolling-reverse 30s infinite; /* Opera 12+ */
+		animation: bg-scrolling-reverse 30s infinite; /* IE 10+ */
 		-webkit-animation-timing-function: linear;
 		-moz-animation-timing-function: linear;
 		-o-animation-timing-function: linear;

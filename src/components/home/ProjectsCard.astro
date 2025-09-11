@@ -1,5 +1,6 @@
 ---
 import Card from "@components/Card.astro";
+import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 const projects = (await getCollection("project")).sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
@@ -13,11 +14,20 @@ const projects = (await getCollection("project")).sort(
             projects.map((project) => {
                 return (
                     <a
+                        class="project"
                         href={project.data.url}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        {project.data.title}
+                        <div class="project-title">
+                            <span>{project.data.title}</span>
+                            <Icon
+                                class="icon"
+                                size={12}
+                                name="carbon:arrow-up-right"
+                            />
+                        </div>
+                        <p>{project.data.description}</p>
                     </a>
                 );
             })
@@ -30,6 +40,48 @@ const projects = (await getCollection("project")).sort(
         @media (min-width: 768px) {
             grid-column: span 1 / span 1;
             grid-row: span 5 / span 5;
+        }
+    }
+    .project {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 1px dotted;
+        margin-top: 0.7rem;
+        @media (min-width: 768px) {
+            margin: 0;
+        }
+    }
+    a {
+        color: var(--gray-100);
+        text-decoration: none;
+    }
+    .project p {
+        font-size: var(--text-xs);
+        padding-block: 4px;
+    }
+    .project-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 500;
+        a {
+            text-decoration: underline;
+        }
+    }
+    .project-title .icon {
+        transition-property: transform, color;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+        transition-duration: 100ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        stroke: currentColor;
+        transform: translateX(-0.25rem);
+    }
+    .project:hover {
+        color: var(--accent-regular);
+        .icon {
+            transform: translate(0, -0.25rem);
         }
     }
 </style>
