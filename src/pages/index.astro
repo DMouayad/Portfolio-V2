@@ -8,6 +8,7 @@ import ProjectsCard from "@components/home/ProjectsCard.astro";
 import ExperiencesCard from "@components/home/ExperiencesCard.astro";
 import ContactCard from "@components/home/ContactCard.astro";
 import SiteInfoCard from "@components/home/SiteInfoCard.astro";
+import TimeCard from "@components/home/TimeCard.astro";
 ---
 
 <BaseLayout
@@ -19,9 +20,10 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		<div class="main">
 			<HeroCard />
 			<AboutCard />
-			<ProjectsCard />
 			<ExperiencesCard />
-			<ContactCard />
+			<TimeCard />
+			<!-- <ContactCard /> -->
+			<ProjectsCard />
 			<SiteInfoCard />
 		</div>
 	</div>
@@ -46,7 +48,7 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		gap: 0.5rem;
 		width: 100%;
 		height: 100%;
-		max-width: 74rem;
+		max-width: 72rem;
 		margin-inline: auto;
 
 		@media (min-width: 640px) {
@@ -100,7 +102,7 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		left: 0;
 		z-index: -1;
 		transition: all var(--theme-transition);
-		opacity: 0.5;
+		opacity: 0.6;
 		-webkit-animation: bg-scrolling-reverse 30s infinite; /* Safari 4+ */
 		-moz-animation: bg-scrolling-reverse 30s infinite; /* Fx 5+ */
 		-o-animation: bg-scrolling-reverse 30s infinite; /* Opera 12+ */
@@ -109,5 +111,8 @@ import SiteInfoCard from "@components/home/SiteInfoCard.astro";
 		-moz-animation-timing-function: linear;
 		-o-animation-timing-function: linear;
 		animation-timing-function: linear;
+	}
+	:root.theme-dark .background {
+		opacity: 0.3;
 	}
 </style>

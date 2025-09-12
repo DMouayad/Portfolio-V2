@@ -2,14 +2,12 @@
 import Card from "@components/Card.astro";
 import { SITE_DATA } from "@data/siteData";
 const { email } = SITE_DATA.home.contactMe;
-const currentYear = new Date().getFullYear();
 ---
 
 <div class="contact-card">
     <Card title="Get in Touch">
         <p>
-            Feel free to contact me if you need any help or have a project in
-            mind.
+            Email
             <br />
             <a href={"mailto:" + email}>
                 {email}
@@ -27,9 +25,9 @@ const currentYear = new Date().getFullYear();
         }
         a {
             margin-block: 0.5625em 2em;
-            color: var(--secondary-text-color);
-            font-size: var(--text-xs);
-            font-weight: 500;
+            color: var(--gray-0);
+            font-style: italic;
+            text-decoration: none;
         }
         p {
             font-size: var(--text-sm);

@@ -29,12 +29,13 @@ const timeToRead = simpleReadingTime(entry.body);
 ---
 
 <BaseLayout title={title} description={description}>
-	<Nav showNavMenu={false} />
+	<Nav showNavMenu={false}>
+		<a slot="title" href={"/"} class="back-button"
+			><Icon size={20} name="carbon:chevron-left" /> BACK</a
+		>
+	</Nav>
 	<div class="page-wrapper">
 		<div class="sidebar">
-			<a class="back-button" href={"/#experiences"}
-				><Icon size={20} name="carbon:chevron-left" /> back to experiences</a
-			>
 			{
 				techStack && (
 					<div class="tech-stack sidebar-tech-stack">
@@ -95,6 +96,9 @@ const timeToRead = simpleReadingTime(entry.body);
 </BaseLayout>
 
 <style>
+	:global(body) {
+		background-color: var(--page-bg-color);
+	}
 	.footer-wrapper {
 		position: absolute;
 		left: 2.5rem;
@@ -161,36 +165,23 @@ const timeToRead = simpleReadingTime(entry.body);
 		transition: background-color var(--theme-transition);
 		row-gap: 57px;
 	}
-	.sidebar .back-button {
-		grid-column-start: 1;
-		grid-column-end: 3;
+	.back-button {
 		position: relative;
-		color: var(--secondary-text-color);
+		color: var(--gray-0);
 		text-decoration: none;
 		font-size: var(--text-sm);
 		display: flex;
+		border-width: 1px;
 		align-items: start;
 		background-color: none;
-		border-radius: 5px;
-		padding: 8px 8px 8px 2px;
-		font-weight: 500;
+		border-radius: 8px;
+		border-style: solid;
+		padding: 0.5rem 1rem;
+		font-weight: 400;
+		transition: background-color var(--theme-transition);
 	}
-	.sidebar .back-button:hover {
-		color: var(--gray-0);
-	}
-	.sidebar .back-button::after {
-		background-color: currentColor;
-		position: absolute;
-		left: 20px;
-		bottom: 0;
-		content: "";
-		display: block;
-		height: 0.1em;
-		transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-		width: 0;
-	}
-	.sidebar .back-button:hover::after {
-		width: calc(100% - 28px);
+	.back-button:hover {
+		background-color: var(--gray-999);
 	}
 
 	.subtitle {

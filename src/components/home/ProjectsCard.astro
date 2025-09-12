@@ -9,28 +9,30 @@ const projects = (await getCollection("project")).sort(
 
 <div class="projects-card">
     <Card title="Projects">
-        <p>These are some of my open-source projects.</p>
+        <p>My open-source projects:</p>
         {
-            projects.map((project) => {
-                return (
-                    <a
-                        class="project"
-                        href={project.data.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <div class="project-title">
-                            <span>{project.data.title}</span>
-                            <Icon
-                                class="icon"
-                                size={12}
-                                name="carbon:arrow-up-right"
-                            />
-                        </div>
-                        <p>{project.data.description}</p>
-                    </a>
-                );
-            })
+            projects
+                .filter((project) => project.data.imOwner)
+                .map((project) => {
+                    return (
+                        <a
+                            class="project"
+                            href={project.data.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div class="project-title">
+                                <span>{project.data.title}</span>
+                                <Icon
+                                    class="icon"
+                                    size={12}
+                                    name="carbon:arrow-up-right"
+                                />
+                            </div>
+                            <p>{project.data.description}</p>
+                        </a>
+                    );
+                })
         }
     </Card>
 </div>
@@ -41,30 +43,33 @@ const projects = (await getCollection("project")).sort(
             grid-column: span 1 / span 1;
             grid-row: span 5 / span 5;
         }
+        p {
+            /* font-style: italic; */
+        }
     }
     .project {
         display: flex;
         flex-direction: column;
         width: 100%;
-        border-bottom: 1px dotted;
         margin-top: 0.7rem;
         @media (min-width: 768px) {
             margin: 0;
         }
     }
     a {
-        color: var(--gray-100);
+        color: var(--gray-0);
         text-decoration: none;
     }
     .project p {
-        font-size: var(--text-xs);
-        padding-block: 4px;
+        padding-block-start: 8px;
+        font-style: normal;
     }
     .project-title {
         display: flex;
-        align-items: center;
+        align-items: end;
         justify-content: space-between;
         font-weight: 500;
+        font-size: var(--text-base);
         a {
             text-decoration: underline;
         }
@@ -79,7 +84,9 @@ const projects = (await getCollection("project")).sort(
         transform: translateX(-0.25rem);
     }
     .project:hover {
-        color: var(--accent-regular);
+        .project-title {
+            color: var(--link-color);
+        }
         .icon {
             transform: translate(0, -0.25rem);
         }

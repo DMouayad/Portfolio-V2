@@ -1,0 +1,57 @@
+---
+import Card from "@components/Card.astro";
+import { formatTimeForDamascus, getCurrentTime } from "../../utils/timeHelpers";
+---
+
+<div class="time-card">
+    <Card>
+        <time class="text" datetime="" id="timeDisplay">
+            {formatTimeForDamascus(getCurrentTime())}
+        </time>
+    </Card>
+</div>
+
+<style>
+    .time-card {
+        grid-column: span 1 / span 1;
+    }
+    .time-card time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        width: 100%;
+        font-weight: 200;
+        white-space: nowrap;
+        @media (min-width: 1280px) {
+            font-size: 26px;
+            line-height: 0;
+        }
+    }
+</style>
+
+<script>
+    import { formatTimeForDamascus } from "../../utils/timeHelpers";
+
+    let interval: ReturnType<typeof setInterval>;
+
+    function updateClock() {
+        const timeDisplay = document.getElementById("timeDisplay");
+        const now = new Date();
+        const formattedNewTime = formatTimeForDamascus(now);
+        if (timeDisplay && formattedNewTime != timeDisplay.textContent) {
+            console.log("Updating time");
+            timeDisplay.textContent = formattedNewTime;
+            timeDisplay.setAttribute("datetime", now.toISOString());
+            interval = setInterval(updateClock, 1000 * 60);
+        }
+    }
+    window.onload = function () {
+        console.log("updating in ", 60 - new Date().getSeconds());
+        interval = setInterval(
+            updateClock,
+            1000 * (60 - new Date().getSeconds()),
+        );
+    };
+</script>

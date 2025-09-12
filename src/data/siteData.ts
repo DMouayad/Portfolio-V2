@@ -15,6 +15,13 @@ export const SITE_DATA = {
             email: 'mouayad.alhamwi.ma@gmail.com',
             accounts: [
                 {
+
+                    title: 'Email',
+                    icon: "carbon:email",
+                    url: 'mouayad.alhamwi.ma@gmail.com',
+                    buttonLabel: "Send me an email"
+                },
+                {
                     title: 'Github',
                     icon: "carbon:logo-github",
                     url: 'https://github.com/dmouayad',

@@ -24,20 +24,26 @@ const { showNavMenu } = Astro.props;
 
 <nav>
 	<div class="menu-header">
-		<a href="/" class="site-title"> {SITE_DATA.navTitle} </a>
+		<slot name="title">
+			<a href="/" class="site-title"> {SITE_DATA.navTitle} </a>
+		</slot>
 
 		<div class="header-actions">
 			<div class="mobile-theme-toggle">
 				<ThemeToggle />
 			</div>
-			<menu-button>
-				<template>
-					<button class="menu-button" aria-expanded="false">
-						<span class="sr-only">Menu</span>
-						<Icon name="carbon:menu" />
-					</button>
-				</template>
-			</menu-button>
+			{
+				showNavMenu && (
+					<menu-button>
+						<template>
+							<button class="menu-button" aria-expanded="false">
+								<span class="sr-only">Menu</span>
+								<Icon name="carbon:menu" />
+							</button>
+						</template>
+					</menu-button>
+				)
+			}
 		</div>
 	</div>
 

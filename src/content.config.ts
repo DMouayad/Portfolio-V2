@@ -27,6 +27,7 @@ export const collections = {
 			url: z.string(),
 			publishDate: z.coerce.date(),
 			tags: z.array(z.string()),
+			imOwner: z.boolean().optional().default(true),
 		}),
 	}),
 };

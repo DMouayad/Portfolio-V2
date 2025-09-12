@@ -16,14 +16,20 @@
 	--gray-999-basis: 0, 0%, 100%;
 	--gray-999_40: hsla(var(--gray-999-basis), 0.4);
 	--gray-999: #ffffff;
-	--bg-color: #ffffff;
-	--card-bg-color: rgba(255, 255, 255, 70%);
-	--accent-regular: #ab4e4f;
+	--red: #ab4e4f;
+	--bg-color: #DADED8;
+	--page-bg-color: #eaeee8;
+	--card-bg-color: rgba(255, 255, 255, 80%);
+	--accent-regular: #477023;
+	--accent-regular: #ac8e55;
+
+	/* --accent-regular: #ab4e4f; */
 
 	--active: #56c096;
 	--accent-text-over: var(--gray-999);
 	--secondary-text-color: #00000099;
-	--link-color: var(--accent-regular);
+	--link-color: #477023;
+	/* --link-color: #747a13; */
 	--image-shade: #e8e6e6;
 	--card-border: #e1e4e8;
 	--card-title: #001aff;
@@ -79,7 +85,7 @@
 }
 
 :root.theme-dark {
-	--gray-0: #ffffff;
+	--gray-0: #f1ebe2;
 	--gray-50: #f3f4f7;
 	--gray-100: #e3e6ee;
 	--gray-200: #c3cadb;
@@ -93,24 +99,29 @@
 	--gray-999-basis: 225, 31%, 5%;
 	--gray-999: #090b11;
 
-	/* --bg-color: hsl(0, 0%, 7%); */
-	--bg-color: hsl(200, 6%, 10%);
+	--bg-color: #0e201a;
+	--page-bg-color: #0e201a;
+	/* --bg-color: hsl(200, 6%, 10%); */
 
-	--card-bg-color: hsl(0, 0%, 9%, 95%);
+	--card-bg-color: #142620;
+	/* --card-bg-color: hsl(0, 0%, 9%); */
+
 
 	--secondary-text-color: #ffffff99;
 
-	--card-border: #2c2c2c;
-	/* --card-border: #373c3e; */
+	--card-border: #5f796077;
 	--card-text-color: #ffffffd9;
 	--card-title: #86b5ff;
 	--about-bg-block: url("/dark-grid.png");
-	--accent-regular: #d15f61;
+	--accent-regular: #B8985B;
+	/* --accent-regular: #009279; */
+	/* --accent-regular: #d15f61; */
+	--red: #d15f61;
 
 	--active: #8CC7AF;
 	--accent-text-over: var(--gray-0);
 	--image-shade: #26292a;
-	--link-color: var(--active);
+	--link-color: #DCC98B;
 
 
 	/* shadows */

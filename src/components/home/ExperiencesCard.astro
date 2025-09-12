@@ -1,8 +1,6 @@
 ---
 import Card from "@components/Card.astro";
-import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
-import ExperiencePopup from "./ExperiencePopup.astro";
 const experiences = (await getCollection("experience")).sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
@@ -14,17 +12,17 @@ const experiences = (await getCollection("experience")).sort(
         {
             experiences.map((experience) => {
                 return (
-                    <div popover id={experience.id}>
-                        <ExperiencePopup id={experience.id} item={experience} />
-                    </div>
-                    <button popovertarget={experience.id} class="experience">
+                    <a class="experience" href={`/experience/${experience.id}`}>
                         <div class="experience-title">
-                            <span>{experience.data.title}</span>
-                            <Icon class="icon" size={16} name="carbon:popup" />
+                            <span>
+                                {experience.data.title} -{" "}
+                                {experience.data.publishDate.getFullYear()}
+                            </span>
+                            <span class="link-txt">View details </span>
                         </div>
 
                         <p>{experience.data.description}</p>
-                    </button>
+                    </a>
                 );
             })
         }
@@ -38,12 +36,6 @@ const experiences = (await getCollection("experience")).sort(
             grid-row: span 5 / span 5;
         }
     }
-    :global(.experiences-card .card .content) {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0px, 1fr));
-        align-items: center;
-        gap: 20px !important;
-    }
 
     .experience {
         display: flex;
@@ -54,16 +46,10 @@ const experiences = (await getCollection("experience")).sort(
         padding: 1rem 0;
     }
 
-    button {
-        outline: none;
+    a {
         background-color: transparent;
-        box-shadow: none;
-        border: none;
-        color: var(--gray-100);
-        font-family: var(--font-body);
-        cursor: pointer;
-        padding: 0;
-        text-align: start;
+        color: var(--gray-0);
+        text-decoration: none;
     }
     .experience p {
         padding-block: 4px;
@@ -85,12 +71,14 @@ const experiences = (await getCollection("experience")).sort(
         transition-duration: 100ms;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         stroke: currentColor;
-        /* transform: translateX(-0.32rem); */
+    }
+    .link-txt {
+        text-decoration: underline;
+        font-size: var(--text-sm);
     }
     .experience:hover {
-        color: var(--accent-regular);
-        .icon {
-            transform: scale3d(1.3, 1.3, 1.3);
+        .link-txt {
+            color: var(--accent-regular);
         }
     }
 </style>
